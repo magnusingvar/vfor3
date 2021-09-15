@@ -2,8 +2,12 @@ const express = require('express');
 const path = require('path');
 const colors = require('colors');
 const indexRouter = require('./routes/');
+const buyRouter = require('./routes/buy')
+const stockRouter = require('./routes/stock')
 
 const app = express();
+
+app.use(express.urlencoded({ extended: false }));
 
 // serve static files
 app.use(express.static(path.join(__dirname, 'public')));
@@ -14,7 +18,9 @@ app.set('view engine', 'ejs');
 
 // routers
 app.use('/', indexRouter);
- 
+app.use('/buy', buyRouter);
+app.use('/stock', stockRouter);
+
 // errors : page not found
 app.use((req, res, next) => {
     const err = new Error('Page not found');

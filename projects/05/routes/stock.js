@@ -9,9 +9,6 @@ const router = express.Router();
 
 // get index page
 router.get('/', (req, res) => {
-  const stockBtn  = 'See available stock';
-  const buyBtn = 'Buy now!';
-  
   const sql = 'SELECT id, name, stock FROM products ORDER BY name';
   let products = [];
 
@@ -32,7 +29,7 @@ router.get('/', (req, res) => {
       products.push(row);
     })
     // colors.yellow(console.log(studios));
-    res.render('index', { title: 'Front page', products, stockBtn, buyBtn });
+    res.render('stock', { title: 'Front page', products });
     return true;
   });
 
