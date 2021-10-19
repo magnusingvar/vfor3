@@ -1,0 +1,21 @@
+body {
+  margin: 0px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+#username, #password {
+  width: 260px;
+  padding: 4px 2px;
+  margin: 10px 0;
+  border: 1px black solid;
+}
+
+form, input#loginBtn {
+  width: 100px;
+  height: 100%;
+  padding: 6px 0px;
+}
