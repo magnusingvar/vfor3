@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
     const username = req.session.username;
     const header01 = `${username} is logged in`;
     const text01 = 'Test';
-    res.render('index', { title: 'Forsíða', header01, text01 });
+    res.render('index', { title: 'Forsíða', header01, text01});
   } else {
     const header01 = 'Velkomin!';
     const text01 = 'Viltu skrá þig inn?';

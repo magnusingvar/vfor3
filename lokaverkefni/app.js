@@ -3,10 +3,12 @@ const path = require('path');
 const session = require('express-session');
 const colors = require('colors');
 const frontPage = require('./routes/');
+const navbar = require('./routes/navbar');
 const loginPage = require('./routes/login');
 const studentsPage = require('./routes/students');
 const subjectsPage = require('./routes/subjects');
 const eventsPage = require('./routes/events');
+const contactPage = require('./routes/contact');
 
 const app = express();
 
@@ -26,11 +28,12 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // routers
-app.use('/', frontPage);
-app.use('/login', loginPage);
-app.use('/students', studentsPage);
-app.use('/subjects', subjectsPage);
-app.use('/events', eventsPage);
+app.use('/', frontPage, navbar);
+app.use('/login', loginPage, navbar);
+app.use('/students', studentsPage, navbar);
+app.use('/subjects', subjectsPage), navbar;
+app.use('/events', eventsPage, navbar);
+app.use('/contact', contactPage, navbar);
 
 // errors : page not found
 app.use((req, res, next) => {

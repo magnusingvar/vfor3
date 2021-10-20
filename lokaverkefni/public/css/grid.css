@@ -1,0 +1,35 @@
+#grid-container {
+  padding: 20px;
+  text-align: center;
+}
+
+#grid {
+  display: inline-grid;
+  gap: 50px;
+}
+
+.grid-item {
+  background: red;
+  width: 100px;
+  height: 100px;
+}
+
+#grid-item-1 {
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+#grid-item-2 {
+  grid-column-start: 3;
+  grid-column-end: 4;
+}
+
+#grid-item-3 {
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+#grid-item-4 {
+  grid-column-start: 3;
+  grid-column-end: 4;
+}
