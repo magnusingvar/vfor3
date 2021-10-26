@@ -31,7 +31,7 @@ app.set('view engine', 'ejs');
 app.use('/', frontPage, navbar);
 app.use('/login', loginPage, navbar);
 app.use('/students', studentsPage, navbar);
-app.use('/subjects', subjectsPage), navbar;
+app.use('/subjects', subjectsPage, navbar);
 app.use('/events', eventsPage, navbar);
 app.use('/contact', contactPage, navbar);
 
