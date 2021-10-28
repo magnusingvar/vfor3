@@ -5,10 +5,12 @@ router.get('/', (req, res) => {
   if (req.session.loggedIn) {
     const username = req.session.username;
     const header01 = `${username} is logged in`;
-    res.render('index', { title: 'Forsíða', header01 });
+    const test = 'Log out';
+    res.render('index', { title: 'Forsíða', header01, test});
   } else {
     const header01 = 'Velkomin!';
-    res.render('index', { title: 'Forsíða', header01 });
+    const test = 'Log in';
+    res.render('index', { title: 'Forsíða', header01, test });
   }
 });
 

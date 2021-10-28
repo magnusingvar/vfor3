@@ -1,21 +1,26 @@
-var nodemailer = require('nodemailer');
+const nodemailer = require('nodemailer');
 
-var transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: 'youremail@gmail.com',
-    pass: 'yourpassword'
-  }
+let transport = nodemailer.createTransport({
+	// host: 'smtp.mailtrap.io',
+  host: 'smtp.gmail.com',
+	// port: 2525,
+  port: 465,
+  secure: true,
+	auth: {
+		user: process.env.EMAIL_USERNAME,
+		pass: process.env.EMAIL_PASSWORD
+	}
 });
 
-var mailOptions = {
-  from: 'magnusingvar@gmail.com',
+const mailOptions = {
+  // from: 'vfor3jq05@gmail.com',
+  from: 'magnusingvar2@gmail.com',
   to: 'magnusingvar@gmail.com',
   subject: 'Sending Email using Node.js',
   text: 'That was easy!'
 };
 
-transporter.sendMail(mailOptions, function(error, info){
+transport.sendMail(mailOptions, function(error, info){
   if (error) {
     console.log(error);
   } else {

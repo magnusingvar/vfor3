@@ -7,7 +7,8 @@ router.get('/', (req, res) => {
   } else {
     const header01 = 'Login';
     const text01 = 'Fara til baka';
-    res.render('login', { title: 'Login', header01, text01 });
+    const test = 'Login';
+    res.render('login', { title: 'Login', header01, text01, test });
   }
 });
 
