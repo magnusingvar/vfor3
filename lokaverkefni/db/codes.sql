@@ -8,6 +8,8 @@ CREATE TABLE events (
   name TEXT NOT NULL
 );
 
+INSERT INTO events (name) VALUES ('Fun Event');
+
 DROP TABLE users;
 
 SELECT * FROM users;
