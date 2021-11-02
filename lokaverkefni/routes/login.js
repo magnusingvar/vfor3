@@ -1,30 +1,39 @@
 const express = require('express');
 const router = express.Router();
+const path = require('path');
+const loginUser = require('../db/loginFunction');
+const bcrypt = require('bcrypt');
+const dbFile = path.join(__dirname, '../db/database.db');
 
+/* if user is logged in and presses the 'log in / out'
+button then log him out. */
 router.get('/', (req, res) => {
-  if(req.session.loggedIn) {
-    res.redirect('/')
-  } else {
-    const header01 = 'Login';
-    const text01 = 'Fara til baka';
-    const test = 'Login';
-    res.render('login', { title: 'Login', header01, text01, test });
-  }
+	if (req.session.loggedIn) {
+		req.session.loggedIn = false;
+		console.log('Log out successful!')
+		res.redirect('/');
+	} else {
+		const header = 'Login';
+		const userValue = 'Login';
+		res.render('login', { title: 'Login', header, userValue});
+	}
 });
 
+// get login page
 router.post('/', (req, res) => {
-  const adminuser = 'User';
-  const adminPassword = 'Password';
-  const user = req.body.username;
-  const password = req.body.password;
-
-  if (adminuser == user && adminPassword == password){
-    req.session.loggedIn = true;
-    req.session.username = user;
-    res.redirect('/');
-  } else {
-    res.redirect('/login');
-  }
+	const username = req.body.username;
+	const password = req.body.password;
+	const userFromDB = loginUser(dbFile, username, password);
+	const validPass = bcrypt.compareSync(password, userFromDB.password);
+	if (validPass) {
+		req.session.loggedIn = true;
+		req.session.username = username;
+		console.log('Success');
+		res.redirect('/');
+	} else {
+		console.log('Username or password is incorrect');
+		res.redirect('/login');
+	}
 });
 
 module.exports = router;

@@ -4,11 +4,17 @@ const nodemailer = require('nodemailer');
 require('dotenv').config();
 
 router.get('/', (req, res) => {
-  res.render('contact', { title: 'Contact us' });
+  if (req.session.loggedIn) {
+		const userValue = 'Log out';
+    res.render('contact', { title: 'Contact us', userValue });
+	} else {
+    const userValue = 'Log in';
+    res.render('contact', { title: 'Contact us', userValue });
+  }
 });
 
 router.post('/', (req, res) => {
-  res.render('contact', { title: 'Contact '});
+  res.render('contact', { title: 'Contact us', userValue });
   let transport = nodemailer.createTransport({
     // host: 'smtp.mailtrap.io',
     host: 'smtp.gmail.com',

@@ -8,6 +8,7 @@ const studentsPage = require('./routes/students');
 const subjectsPage = require('./routes/subjects');
 const eventsPage = require('./routes/events');
 const contactPage = require('./routes/contact');
+const registerPage = require('./routes/register');
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.use('/students', studentsPage);
 app.use('/subjects', subjectsPage);
 app.use('/events', eventsPage);
 app.use('/contact', contactPage);
+app.use('/register', registerPage);
 
 // errors : page not found
 app.use((req, res, next) => {
