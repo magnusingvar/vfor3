@@ -6,12 +6,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/navbar.css">
-  <link rel="stylesheet" href="css/grid.css">
+  <link rel="stylesheet" href="css/events.css">
 
   <title><%= title %></title>
 </head>
 <body>
   <%- include ('includes/navbar') -%>
-
+  <div id="content">
+    <div id="grid-container">
+      <h2><%= header01 %></h2>
+      <div id="grid">
+      <% for (let i = events.length - 1; i >= events.length - 4; i -= 1) { %>
+        <div class="grid-item">
+          <div class="container">
+            <div class="image">
+              <img src="images/<%= events[i].id %>.jpg">
+            </div>
+            <div class="title">
+              <h3>
+                <%= events[i].name %>
+              </h3>
+            </div>
+          </div>
+        </div>
+        <% } %> 
+      </div>
+    </div>
+  </div>
 </body>
 </html>

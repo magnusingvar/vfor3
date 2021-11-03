@@ -8,9 +8,10 @@ CREATE TABLE events (
   name TEXT NOT NULL
 );
 
-INSERT INTO events (name) VALUES ('Fun Event');
+INSERT INTO events (name) VALUES ('Event 5');
 
 DROP TABLE users;
+DROP TABLE events;
 
 SELECT * FROM users;
 SELECT * FROM events;

@@ -8,13 +8,19 @@ router.get('/', (req, res) => {
 		const userValue = 'Log out';
     res.render('contact', { title: 'Contact us', userValue });
 	} else {
-    const userValue = 'Log in';
+    const userValue = 'Login';
     res.render('contact', { title: 'Contact us', userValue });
   }
 });
 
 router.post('/', (req, res) => {
-  res.render('contact', { title: 'Contact us', userValue });
+  if (req.session.loggedIn) {
+		const userValue = 'Log out';
+    res.render('contact', { title: 'Contact us', userValue });
+	} else {
+    const userValue = 'Login';
+    res.render('contact', { title: 'Contact us', userValue });
+  }
   let transport = nodemailer.createTransport({
     // host: 'smtp.mailtrap.io',
     host: 'smtp.gmail.com',
@@ -29,8 +35,8 @@ router.post('/', (req, res) => {
 
   const mailOptions = {
     // from: 'vfor3jq05@gmail.com',
-    from: 'magnusnodemailer@gmail.com',
-    to: req.body.email,
+    from: req.body.email,
+    to: 'magnusnodemailer@gmail.com',
     subject: 'Sending Email using Node.js',
     text: req.body.message
   };

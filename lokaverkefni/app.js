@@ -30,8 +30,6 @@ app.set('view engine', 'ejs');
 // routers
 app.use('/', frontPage);
 app.use('/login', loginPage);
-app.use('/students', studentsPage);
-app.use('/subjects', subjectsPage);
 app.use('/events', eventsPage);
 app.use('/contact', contactPage);
 app.use('/register', registerPage);
