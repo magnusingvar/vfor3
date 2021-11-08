@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/navbar.css">
   <link rel="stylesheet" href="css/events.css">
+
   <title><%= title %></title>
 </head>
 <body>
@@ -15,11 +16,12 @@
     <div id="grid-container">
       <h2><%= header01 %></h2>
       <div id="grid">
-      <% for (let i = 0; i < events.length; i += 1){ %>
+      <% for (let i = 0; i < events.length; i += 1) { %>
+        <a href="/events/<%- events[i].id -%>">
         <div class="grid-item">
           <div class="container">
             <div class="image">
-              <img src="images/<%= events[i].id %>.jpg">
+              <img src="images/<%- events[i].imgLink -%>">
             </div>
             <div class="title">
               <h3>
@@ -28,6 +30,7 @@
             </div>
           </div>
         </div>
+        </a>
         <% } %> 
       </div>
     </div>

@@ -4,8 +4,6 @@ const session = require('express-session');
 const colors = require('colors');
 const frontPage = require('./routes/');
 const loginPage = require('./routes/login');
-const studentsPage = require('./routes/students');
-const subjectsPage = require('./routes/subjects');
 const eventsPage = require('./routes/events');
 const contactPage = require('./routes/contact');
 const registerPage = require('./routes/register');
@@ -32,20 +30,20 @@ app.use('/', frontPage);
 app.use('/login', loginPage);
 app.use('/events', eventsPage);
 app.use('/contact', contactPage);
-app.use('/register', registerPage);
+app.use('/register', registerPage); 
 
 // errors : page not found
 app.use((req, res, next) => {
-    const err = new Error('Page not found');
-    err.status = 404;
-    next(err);
-  });
+  const err = new Error('Page not found');
+  err.status = 404;
+  next(err);
+});
 
-  // handling errors
-  app.use((err, req, res) => {
-    res.status(err.status || 500);
-    res.send(err.message);
-  });
+// handling errors
+app.use((err, req, res) => {
+  res.status(err.status || 500);
+  res.send(err.message);
+});
 
 // setting up the server
 app.listen(3000, () => {
