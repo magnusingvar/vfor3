@@ -16,22 +16,24 @@
     <div id="grid-container">
       <h2><%= header01 %></h2>
       <div id="grid">
-      <% for (let i = events.length - 1; i >= events.length - 4; i -= 1) { %>
-        <a href="/events/<%- events[i].id %>">
-        <div class="grid-item">
-          <div class="container">
-            <div class="image">
-              <img src="images/<%- events[i].imgLink %>">
-            </div>
-            <div class="title">
-              <h3>
-                <%= events[i].name %>
-              </h3>
+      <% if (events.length >= 4) { %>
+        <% for (let i = events.length - 1; i >= events.length - 4; i -= 1) { %>
+          <a href="/events/<%- events[i].id %>">
+          <div class="grid-item">
+            <div class="container">
+              <div class="image">
+                <img src="images/<%- events[i].imgLink %>">
+              </div>
+              <div class="title">
+                <h3>
+                  <%= events[i].name %>
+                </h3>
+              </div>
             </div>
           </div>
-        </div>
-        </a>
-        <% } %> 
+          </a>
+          <% } %> 
+        <% } %>
       </div>
     </div>
   </div>

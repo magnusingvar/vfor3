@@ -1,7 +1,11 @@
 CREATE TABLE users (
+  id INTEGER PRIMARY KEY,
   username TEXT NOT NULL UNIQUE,
-  password TEXT NOT NULL
+  password TEXT NOT NULL,
+  userPrivilege TEXT NOT NULL DEFAULT 'User'
 );
+
+UPDATE users SET userPrivilege='Admin' WHERE id=1;
 
 CREATE TABLE events (
   id INTEGER PRIMARY KEY, 
@@ -10,7 +14,7 @@ CREATE TABLE events (
   imgLink TEXT DEFAULT 'imgNotFound.jpg'
 );
 
-INSERT INTO events (name, description) VALUES ('Event 5', 'Event 5 description');
+INSERT INTO events (name, description) VALUES ('Event 4', 'Event 4 description');
 
 DROP TABLE users;
 DROP TABLE events;

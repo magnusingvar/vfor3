@@ -5,14 +5,9 @@ const dbFile = path.join(__dirname, '../db/database.db');
 const getEvents = require('../db/getEvents');
 
 router.get('/', (req, res) => {
-  // Push data from events table into
-  // an array
-  const item = getEvents.getAllInfo(dbFile);
-  const events = []
-  item.forEach((row) => {
-    events.push(row);
-  });
-  
+  let where = 'WHERE id';
+  const events = getEvents(dbFile, where)
+
   if (req.session.loggedIn) {
     const username = req.session.username;
     const header01 = 'New events';

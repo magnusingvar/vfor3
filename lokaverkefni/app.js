@@ -8,6 +8,8 @@ const eventsPage = require('./routes/events');
 const contactPage = require('./routes/contact');
 const registerPage = require('./routes/register');
 
+
+
 const app = express();
 
 app.use(session({
@@ -33,10 +35,9 @@ app.use('/contact', contactPage);
 app.use('/register', registerPage); 
 
 // errors : page not found
-app.use((req, res, next) => {
-  const err = new Error('Page not found');
-  err.status = 404;
-  next(err);
+app.use((req, res) => {
+  res.status(404);
+  res.render('error', { title: 'Error', status: 404, msg: 'Page not found!' });
 });
 
 // handling errors
