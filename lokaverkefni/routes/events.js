@@ -4,6 +4,8 @@ const path = require('path');
 const dbFile = path.join(__dirname, '../db/database.db');
 const getEvents = require('../db/getEvents');
 const update = require('../db/update');
+const loginUser = require('../db/loginFunction');
+const { red } = require('colors');
 
 router.get('/', (req, res) => {
   let where = 'WHERE id';
@@ -25,18 +27,21 @@ router.get('/:id', (req, res) => {
   const params = req.params.id;
   const where = `WHERE id = ${params};`;
   const hidden = 0;
-
+  
   if (req.session.loggedIn) {
     const username = req.session.username;
+    console.log(username)
     const userValue = 'Log out';
     const events = getEvents(dbFile, where);
-    console.log(events.name)
-    res.render('event', { title: `${events.name}`, username, userValue, events, hidden})
+    const userPrivilegeFromDB = loginUser(dbFile, username);
+    const userPrivilege = userPrivilegeFromDB.userPrivilege;
+    res.render('event', { title: `${events.name}`, username, userValue, events, hidden, userPrivilege})
   } else {
     const username = 'none';
     const userValue = 'Login';
     const events = getEvents(dbFile, where);
-    res.render('event', { title: 'a', username, userValue, events, hidden})
+    const userPrivilege = 'None';
+    res.render('event', { title: 'a', username, userValue, events, hidden, userPrivilege})
   }
 });
 
@@ -47,7 +52,9 @@ router.get('/:id/edit', (req, res) => {
   const where = `WHERE id = ${params};`;
   const events = getEvents(dbFile, where);
   const hidden = 1;
-  res.render('event', { title: 'Test', username, userValue, events, hidden })
+  const userPrivilegeFromDB = loginUser(dbFile, username);
+  const userPrivilege = userPrivilegeFromDB.userPrivilege;
+  res.render('event', { title: 'Test', username, userValue, events, hidden, userPrivilege })
 })
 
 router.post('/:id/update', (req, res) => {

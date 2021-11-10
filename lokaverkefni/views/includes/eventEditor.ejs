@@ -1,0 +1,26 @@
+<div id="content">
+  <% for (let i = 0; i < events.length; i+=1) { %>
+    <h1 class=<%= hidden ? "hide" : "show" %>><%= events[i].name %></h1>
+    <p class=<%= hidden ? "hide" : "show" %>><%= events[i].description %></p>
+    
+    <% if (userPrivilege == "Admin") { %>
+      <form action="<%= events[i].id %>/edit" id="edit" method="GET">
+        <input type="submit" class=<%= hidden ? "hide" : "show" %> value="Edit">
+      </form>
+    <% } %>
+
+      <% if (hidden != 0) { %>
+        <form action="update" id="update" method="POST">
+          <input type="text" name="newName" class="newName" value="<%= events[i].name %>">
+          <input type="text" name="newDescription" id="newDescription" class="newDescription" value="<%= events[i].description %>">
+          <input type="submit" class="updateBtn" value="Update">
+          <div class="imageUpload">
+            <input type="file">
+          </div>
+        </form>
+        <% } %>
+
+    <img src="/images/<%- events[i].imgLink %>" class=<%= hidden ? "hide" : "show" %>>
+      
+  <% } %>
+</div>

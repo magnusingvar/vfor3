@@ -5,31 +5,12 @@
   <meta http-equiv="X-UA-Compatile" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/eventPage.css">
   <link rel="stylesheet" href="/css/navbar.css">
-
   <title><%= title %></title>
 </head>
 <body>
-
   <%- include ('includes/navbar') -%>
-  <% for (let i = 0; i < events.length; i+=1) { %>
-    <h1><%= events[i].name %></h1>
-    <% if (username != "none") { %>
-      
-      <form action="<%= events[i].id %>/edit" method="GET">
-        <input type="submit" value="Edit">
-      </form>
-      
-      <% if (hidden != 0) { %>
-      <form action="update" method="POST">
-        <input type="text" name="newName" id="newName" class="newName" value="<%= events[i].name %>">
-        <input type="text" name="newDescription" id="newDescription" class="newDescription" value="<%= events[i].description %>">
-        <input type="submit" value="Update">
-      </form>
-      <% } %>
-    <% } %>
-    <p><%= events[i].description %></p>
-
-  <% } %>
+  <%- include ('includes/eventEditor') -%>
 </body>
 </html>
