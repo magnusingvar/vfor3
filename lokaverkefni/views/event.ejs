@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/eventPage.css">
   <link rel="stylesheet" href="/css/navbar.css">
-  <title><%= title %></title>
+  <title> <% for (let i = 0; i < events.length; i+=1) { %> <%- events[i].name %> <% } %> </title>
 </head>
 <body>
   <%- include ('includes/navbar') -%>

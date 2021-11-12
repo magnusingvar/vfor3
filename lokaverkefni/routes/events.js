@@ -5,7 +5,7 @@ const dbFile = path.join(__dirname, '../db/database.db');
 const getEvents = require('../db/getEvents');
 const update = require('../db/update');
 const loginUser = require('../db/loginFunction');
-const { red } = require('colors');
+const deleteEvent = require('../db/delete/deleteEvent');
 
 router.get('/', (req, res) => {
   let where = 'WHERE id';
@@ -54,7 +54,7 @@ router.get('/:id/edit', (req, res) => {
   const hidden = 1;
   const userPrivilegeFromDB = loginUser(dbFile, username);
   const userPrivilege = userPrivilegeFromDB.userPrivilege;
-  res.render('event', { title: 'Test', username, userValue, events, hidden, userPrivilege })
+  res.render('event', { username, userValue, events, hidden, userPrivilege })
 })
 
 router.post('/:id/update', (req, res) => {
@@ -65,7 +65,11 @@ router.post('/:id/update', (req, res) => {
   res.redirect('/');
 });
 
-
-
+router.post('/:id/delete', (req, res) => {
+  const params = req.params.id;
+  console.log(params)
+  deleteEvent(dbFile, params);
+  res.redirect('/')
+})
 
 module.exports = router;
