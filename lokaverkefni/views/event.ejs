@@ -11,6 +11,18 @@
 </head>
 <body>
   <%- include ('includes/navbar') -%>
-  <%- include ('includes/eventEditor') -%>
+  <div id="content">
+    <% for (let i = 0; i < events.length; i+=1) { %>
+      <h1><%= events[i].name %></h1>
+      <p><%= events[i].description %></p>
+
+      <!-- <% if (userPrivilege == "Admin") { %> -->
+      <button>
+        <a href="<%- events[i].id %>/edit">Edit</a>
+      </button>      <!-- <% } %> -->
+      <div class="imgContainer">
+        <img src="/images/<%- events[i].imgLink %>" class="image">
+      </div>
+    <% } %>
 </body>
 </html>

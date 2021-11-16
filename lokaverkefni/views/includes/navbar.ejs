@@ -3,6 +3,9 @@
     <li><a href="/">Home</a></li>
     <li><a href="/events">Events</a></li>
     <li><a href="/contact">Contact</a></li>
+    <% if (userPrivilege == "Admin") { %>
+      <li><a href="/createEvent">Create Event</a></li>
+    <% } %>
     <li style="float:right"><a class="active" href="/login"><%- userValue %></a></li>
     </ul>
 </div>

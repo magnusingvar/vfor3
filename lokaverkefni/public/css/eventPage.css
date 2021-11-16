@@ -10,12 +10,10 @@ h1 {
   margin: 0
 }
 
-img {
+.imgContainer img {
+  position: relative;
   width: 400px;
-}
-
-.hide {
-  display: none;
+  height: 400px;
 }
 
 form#edit {
@@ -89,4 +87,13 @@ input.file, .uploadBtn {
 
 input.updateBtn {
   display: block;
+}
+
+.deleteBtn {
+  cursor: pointer;
+  margin: 15px;
+  padding: 10px;
+  border: 1px solid #000;
+  background: red;
+  color: #fff;
 }

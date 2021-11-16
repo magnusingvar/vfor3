@@ -4,8 +4,9 @@ const path = require('path');
 const dbFile = path.join(__dirname, '../db/database.db');
 const getEvents = require('../db/getEvents');
 const update = require('../db/update');
-const loginUser = require('../db/loginFunction');
 const deleteEvent = require('../db/delete/deleteEvent');
+const multer = require('multer');
+const checkPrivilege = require('../db/read/privilege');
 
 router.get('/', (req, res) => {
   let where = 'WHERE id';
@@ -13,55 +14,68 @@ router.get('/', (req, res) => {
 
   // Check if user is logged in
   if (req.session.loggedIn) {
+    const username = req.session.username;
+    const userPrivilege = checkPrivilege(dbFile, username).userPrivilege;
     const header01 = 'Events'
 	  const userValue = 'Log out';
-    res.render('events', { title: 'Events', header01, userValue, events})
+    res.render('events', { title: 'Events', header01, userValue, events, userPrivilege})
   } else {
+    const username = 'none';
+    const userPrivilege = checkPrivilege(dbFile, username);
     const header01 = 'Events'
     const userValue = 'Login';
-    res.render('events', { title: 'Events', header01, userValue, events})
+    res.render('events', { title: 'Events', header01, userValue, events, userPrivilege})
   }
 });
 
 router.get('/:id', (req, res) => {
   const params = req.params.id;
   const where = `WHERE id = ${params};`;
-  const hidden = 0;
-  
+  const events = getEvents(dbFile, where);
+
   if (req.session.loggedIn) {
     const username = req.session.username;
-    console.log(username)
+    const userPrivilege = checkPrivilege(dbFile, username).userPrivilege;
     const userValue = 'Log out';
-    const events = getEvents(dbFile, where);
-    const userPrivilegeFromDB = loginUser(dbFile, username);
-    const userPrivilege = userPrivilegeFromDB.userPrivilege;
-    res.render('event', { title: `${events.name}`, username, userValue, events, hidden, userPrivilege})
+    res.render('event', { title: `${events.name}`, username, userValue, events, userPrivilege})
   } else {
     const username = 'none';
+    const userPrivilege = checkPrivilege(dbFile, username);
     const userValue = 'Login';
-    const events = getEvents(dbFile, where);
-    const userPrivilege = 'None';
-    res.render('event', { title: 'a', username, userValue, events, hidden, userPrivilege})
+    res.render('event', { title: 'a', username, userValue, events, userPrivilege})
   }
 });
 
 router.get('/:id/edit', (req, res) => {
-  const username = req.session.username;
-  const userValue = 'Log out';
-  const params = req.params.id;
-  const where = `WHERE id = ${params};`;
-  const events = getEvents(dbFile, where);
-  const hidden = 1;
-  const userPrivilegeFromDB = loginUser(dbFile, username);
-  const userPrivilege = userPrivilegeFromDB.userPrivilege;
-  res.render('event', { username, userValue, events, hidden, userPrivilege })
-})
+  if (req.session.loggedIn) {
+    const username = req.session.username;
+    const userPrivilege = checkPrivilege(dbFile, username).userPrivilege;
+    const userValue = 'Log out';
+    const params = req.params.id;
+    const where = `WHERE id = ${params};`;
+    const events = getEvents(dbFile, where);
+    res.render('includes/eventEditor', { username, userValue, events, userPrivilege })
+  } else {
+    res.render('error', { title: '401', status: '401', msg: 'Access denied'})
+  }
+});
 
-router.post('/:id/update', (req, res) => {
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, 'public/images');
+  },
+  filename: function(req, file, cb) {
+    cb(null, req.params.id + '.jpg');
+  }
+});
+
+const upload = multer({storage: storage})
+
+router.post('/:id/update', upload.single('file'), (req, res) => {
   const params = req.params.id;
   const where = `WHERE id = ${params};`;
   const events = getEvents(dbFile, where);
-  update(dbFile, params, req.body.newName, req.body.newDescription);
+  update(dbFile, params, req.body.newName, req.body.newDescription, req.params.id + ".jpg");
   res.redirect('/');
 });
 

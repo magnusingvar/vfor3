@@ -1,34 +1,30 @@
-<div id="content">
-  <% for (let i = 0; i < events.length; i+=1) { %>
-    <h1 class=<%= hidden ? "hide" : "show" %>><%= events[i].name %></h1>
-    <p class=<%= hidden ? "hide" : "show" %>><%= events[i].description %></p>
-    
-    <% if (userPrivilege == "Admin") { %>
-      <form action="<%= events[i].id %>/edit" id="edit" method="GET">
-        <input type="submit" class=<%= hidden ? "hide" : "show" %> value="Edit">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatile" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/eventPage.css">
+  <link rel="stylesheet" href="/css/navbar.css">
+</head>
+<body>
+  <%- include ('navbar') -%>
+  <div id="content">
+    <% for (let i = 0; i < events.length; i+=1) { %>        
+      <form action="update" id="update" method="POST" enctype="multipart/form-data">
+        <input type="text" name="newName" class="newName" value="<%= events[i].name %>">
+        <input type="text" name="newDescription" id="newDescription" class="newDescription" value="<%= events[i].description %>">
+        <input type="submit" class="updateBtn" value="Update">
+        <div class="imageUpload">
+          <div class="overlay"></div>
+          <input type="file" class="file" name="file" accept="image/*">
+        </div>
+      </form>
+      
+      <form action="delete" id="delete" method="POST">
+        <input type="submit" class="deleteBtn" value="Delete">
       </form>
     <% } %>
-
-      <% if (hidden != 0) { %>
-        <form action="update" id="update" method="POST">
-          <input type="text" name="newName" class="newName" value="<%= events[i].name %>">
-          <input type="text" name="newDescription" id="newDescription" class="newDescription" value="<%= events[i].description %>">
-          <input type="submit" class="updateBtn" value="Update">
-        </form>
-        <form action="upload" id="upload" enctype="multipart/form-data" method="POST">
-          <div class="imageUpload">
-            <img src="/images/<%- events[i].imgLink %>">
-            <div class="overlay"></div>
-            <input type="file" class="file" name="myFile" accept="image/*">
-            <input type="submit" class="uploadBtn" value="Upload">
-          </div>
-        </form>
-        <form action="delete" id="delete" method="POST">
-          <input type="submit" class="deleteBtn" value="Delete">
-        </form>
-        <% } %>
-
-    <img src="/images/<%- events[i].imgLink %>" class=<%= hidden ? "hide" : "show" %>>
-      
-  <% } %>
-</div>
+  </div>
+</body>

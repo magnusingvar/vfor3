@@ -7,9 +7,7 @@ const loginPage = require('./routes/login');
 const eventsPage = require('./routes/events');
 const contactPage = require('./routes/contact');
 const registerPage = require('./routes/register');
-
-
-
+const createEventPage = require('./routes/createEvent');
 const app = express();
 
 app.use(session({
@@ -33,6 +31,7 @@ app.use('/login', loginPage);
 app.use('/events', eventsPage);
 app.use('/contact', contactPage);
 app.use('/register', registerPage); 
+app.use('/createEvent', createEventPage);
 
 // errors : page not found
 app.use((req, res) => {
