@@ -3,10 +3,11 @@ const router = express.Router();
 const path = require('path');
 const dbFile = path.join(__dirname, '../db/database.db');
 const getEvents = require('../db/getEvents');
-const update = require('../db/update');
+const update = require('../db/update/updateEvent');
 const deleteEvent = require('../db/delete/deleteEvent');
 const multer = require('multer');
 const checkPrivilege = require('../db/read/privilege');
+const signup = require('../db/signup');
 
 router.get('/', (req, res) => {
   let where = 'WHERE id';
@@ -70,6 +71,18 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({storage: storage})
+
+
+router.get('/:id/signup', (req, res) => {
+  if (req.session.loggedIn) {
+    const user = "2";
+    const params = req.params.id;
+    console.log(params)
+    signup(dbFile, user, params);
+  } else {
+    res.send('You need to sign in')
+  }
+});
 
 router.post('/:id/update', upload.single('file'), (req, res) => {
   const params = req.params.id;

@@ -7,7 +7,7 @@ const loginPage = require('./routes/login');
 const eventsPage = require('./routes/events');
 const contactPage = require('./routes/contact');
 const registerPage = require('./routes/register');
-const createEventPage = require('./routes/createEvent');
+const createEventPage = require('./routes/create/createEvent');
 const app = express();
 
 app.use(session({

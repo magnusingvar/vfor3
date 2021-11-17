@@ -76,6 +76,10 @@ form#upload {
   opacity: 0.6;
 }
 
+.image {
+  opacity: 1;
+}
+
 input.file, .uploadBtn {
   margin: 0 auto;
   position: relative;

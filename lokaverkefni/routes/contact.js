@@ -2,14 +2,21 @@ const express = require('express');
 const router = express.Router();
 const nodemailer = require('nodemailer');
 require('dotenv').config();
+const path = require('path');
+const dbFile = path.join(__dirname, '../db/database.db');
+const checkPrivilege = require('../db/read/privilege');
 
 router.get('/', (req, res) => {
   if (req.session.loggedIn) {
+    const username = req.session.username;
+    const userPrivilege = checkPrivilege(dbFile, username).userPrivilege;
 		const userValue = 'Log out';
-    res.render('contact', { title: 'Contact us', userValue });
+    res.render('contact', { title: 'Contact us', userValue, userPrivilege});
 	} else {
+    const username = 'none';
+    const userPrivilege = checkPrivilege(dbFile, username);
     const userValue = 'Login';
-    res.render('contact', { title: 'Contact us', userValue });
+    res.render('contact', { title: 'Contact us', userValue, userPrivilege});
   }
 });
 
