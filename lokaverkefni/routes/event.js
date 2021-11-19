@@ -5,7 +5,7 @@ const dbFile = path.join(__dirname, '../db/database.db');
 const update = require('../db/update');
 
 router.get('/', (req, res) => {
-  console.log('test')
+  res.render('read/event', {title: 'test'});
 });
 
 router.post('/', (req, res) => {

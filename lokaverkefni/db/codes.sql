@@ -11,7 +11,10 @@ CREATE TABLE events (
   id INTEGER PRIMARY KEY, 
   name TEXT NOT NULL,
   description TEXT,
-  imgLink TEXT DEFAULT 'imgNotFound.jpg'
+  year INTEGER,
+  month INTEGER,
+  day INTEGER,
+  image TEXT DEFAULT 'imgNotFound.jpg'
 );
 
 CREATE TABLE userEvents (
@@ -36,6 +39,6 @@ SELECT * FROM users;
 SELECT * FROM events;
 SELECT * from userEvents;
 
-PRAGMA TABLE_info(userEvents);
+PRAGMA TABLE_info(events);
 
 .tables

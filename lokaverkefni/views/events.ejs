@@ -12,28 +12,6 @@
 </head>
 <body>
   <%- include ('includes/navbar') -%>
-  <div id="content">
-    <div id="grid-container">
-      <h2><%= header01 %></h2>
-      <div id="grid">
-      <% for (let i = 0; i < events.length; i += 1) { %>
-        <a href="/events/<%- events[i].id -%>">
-        <div class="grid-item">
-          <div class="container">
-            <div class="image">
-              <img src="images/<%- events[i].imgLink -%>">
-            </div>
-            <div class="title">
-              <h3>
-                <%= events[i].name %>
-              </h3>
-            </div>
-          </div>
-        </div>
-        </a>
-        <% } %> 
-      </div>
-    </div>
-  </div>
+  <%- include ('includes/eventTable') -%>
 </body>
 </html>

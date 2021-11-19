@@ -1,0 +1,14 @@
+<div id="content">
+  <div id="grid-container">
+    <h2><%= header01 %></h2>
+    <div id="grid">
+      <% for (let i = 0; i < events.length; i += 1) { %>
+        <div class="grid-item">
+          <a href="/event?idEvent=<%= events[i].id %>">
+            TEST
+          </a>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</div>

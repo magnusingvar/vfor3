@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  createEvent(dbFile, req.body.name, req.body.description);
+  createEvent(dbFile, req.body.name, req.body.description, req.body.year, req.body.month, req.body.day);
   res.redirect('/')
 })
 

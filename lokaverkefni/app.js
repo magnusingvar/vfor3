@@ -3,11 +3,19 @@ const path = require('path');
 const session = require('express-session');
 const colors = require('colors');
 const frontPage = require('./routes/');
+
+const createEvent = require('./routes/create/createEvent');
+
+const updateEvent = require('./routes/update/updateEvent');
+
+const deleteEvent = require('./routes/delete/deleteEvent');
+
+const readEvent = require('./routes/read/event');
+const readEvents = require('./routes/read/events');
+
 const loginPage = require('./routes/login');
-const eventsPage = require('./routes/events');
-const contactPage = require('./routes/contact');
 const registerPage = require('./routes/register');
-const createEventPage = require('./routes/create/createEvent');
+
 const app = express();
 
 app.use(session({
@@ -28,10 +36,12 @@ app.set('view engine', 'ejs');
 // routers
 app.use('/', frontPage);
 app.use('/login', loginPage);
-app.use('/events', eventsPage);
-app.use('/contact', contactPage);
+app.use('/events', readEvents);
+app.use('/event', readEvent)
+// app.use('/contact', contactPage);
 app.use('/register', registerPage); 
-app.use('/createEvent', createEventPage);
+app.use('/createEvent', createEvent);
+app.use('/updateEvent', updateEvent);
 
 // errors : page not found
 app.use((req, res) => {

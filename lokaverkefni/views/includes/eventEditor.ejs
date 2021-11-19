@@ -9,23 +9,28 @@
   <link rel="stylesheet" href="/css/navbar.css">
 </head>
 <body>
-  <%- include ('navbar') -%>
-  <div id="content">
-    <% for (let i = 0; i < events.length; i+=1) { %>        
-      <form action="update" id="update" method="POST" enctype="multipart/form-data">
-        <input type="text" name="newName" class="newName" value="<%= events[i].name %>">
-        <input type="text" name="newDescription" id="newDescription" class="newDescription" value="<%= events[i].description %>">
-        <input type="submit" class="updateBtn" value="Update">
-        <div class="imageUpload">
-          <div class="overlay"></div>
-          <img src="/images/<%- events[i].imgLink %>">
-          <input type="file" class="file" name="file" accept="image/*">
-        </div>
-      </form>
+<%- include ('navbar') -%>
+<div id="content">
+  <form action="/updateEvent" id="update" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="idEvent" value="<%= event.id %>" placeholder=" ">
+
+    <input type="text" name="name" class="name" value="<%= event.name %>">
+    <input type="text" name="description" id="description" class="description" value="<%= event.description %>">
+    <div id="date">
+      <input type="text" name="day" id="day" value="<%= event.day %>">
+      <input type="text" name="month" id="month" value="<%= event.month %>">
+      <input type="text" name="year" id="year" value="<%= event.year %>">
+    </div>
+    <input type="submit" class="updateBtn" value="Update">
+    <div class="imageUpload">
+      <div class="overlay"></div>
+        <img src="/images/<%- event.image %>">
+        <input type="file" class="file" name="file">
+      </div>
+    </form>
       
-      <form action="delete" id="delete" method="POST">
-        <input type="submit" class="deleteBtn" value="Delete">
-      </form>
-    <% } %>
+    <form action="delete" id="delete" method="POST">
+      <input type="submit" class="deleteBtn" value="Delete">
+    </form>
   </div>
 </body>

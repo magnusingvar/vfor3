@@ -11,28 +11,33 @@
   <title><%= title %></title>
 </head>
 <body>
-  <%- include ('includes/navbar') -%>
-  <div id="content">
-    <div id="grid-container">
-      <h2><%= header01 %></h2>
-      <div id="grid">
-      <% if (events.length >= 4) { %>
-        <% for (let i = events.length - 1; i >= events.length - 4; i -= 1) { %>
-          <a href="/events/<%- events[i].id %>">
+<%- include ('includes/navbar') -%>
+<div id="content">
+  <div id="grid-container">
+    <h2><%= header01 %></h2>
+    <div id="grid">
+    <% if (events.length >= 4) { %>
+      <% for (let i = events.length - 1; i >= events.length - 4; i -= 1) { %>
           <div class="grid-item">
-            <div class="container">
-              <div class="image">
-                <img src="images/<%- events[i].imgLink %>">
+            <a href="/event?idEvent=<%= events[i].id %>">
+              <div class="container">
+                <div class="image">
+                  <img src="images/uploads/<%- events[i].image %>">
+                </div>
+                <div class="title">
+                  <h3>
+                    <%= events[i].name %>
+                  </h3>
+                </div>
               </div>
-              <div class="title">
-                <h3>
-                  <%= events[i].name %>
-                </h3>
-              </div>
+            </a>
+            <p>
+              <span><%= events[i].day %>/</span>
+              <span><%= events[i].month %>/</span>
+              <span><%= events[i].year %></span>
+            </p>
             </div>
-          </div>
-          </a>
-          <% } %> 
+          <% } %>
         <% } %>
       </div>
     </div>

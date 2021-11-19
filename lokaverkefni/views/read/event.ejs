@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatile" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/eventPage.css">
+  <link rel="stylesheet" href="/css/navbar.css">
+</head>
+<body>
+  <%- include ('../includes/navbar') -%>
+  <div id="content">
+    <h1><%= event.name %></h1>
+    <p><%= event.description %></p>
+    <div class="date">
+      <p>
+        <span class="day">
+          <%= event.day %>
+        </span>
+        <span class="month">
+          <%= event.month %>
+        </span>
+        <span class="year">
+          <%= event.year %>
+        </span>
+      </p>
+    </div>
+    <% if (userPrivilege == "Admin") { %>
+      <form action="/updateEvent" method="GET"><button type="submit" class="customBtn">Update</button>
+        <input type="hidden" name="idEvent" id="idEvent" value="<%= event.id %>"></form>
+      </form>
+      <!-- <button> <a href="">Edit</a> </button>  -->
+    <% } %>
+
+    <div class="imgContainer">
+      <img src="images/uploads/<%- event.image %>" class="image">
+    </div>
+
+  </div>
+</body>
+</html>

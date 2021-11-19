@@ -2,12 +2,11 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const dbFile = path.join(__dirname, '../db/database.db');
-const getEvents = require('../db/getEvents');
+const getEvents = require('../db/read/readEvents');
 const checkPrivilege = require('../db/read/privilege');
 
 router.get('/', (req, res) => {
-  let where = 'WHERE id';
-  const events = getEvents(dbFile, where)
+  const events = getEvents(dbFile)
 
   if (req.session.loggedIn) {
     const username = req.session.username;
