@@ -21,8 +21,8 @@ CREATE TABLE userEvents (
   idUser INTEGER,
   idEvent INTEGER,
   PRIMARY KEY (idUser, idEvent),
-  FOREIGN KEY (idUser) REFERENCES users (id),
-  FOREIGN KEY (idEvent) REFERENCES events (id)
+  FOREIGN KEY (idUser) REFERENCES users (id) ON DELETE CASCADE,
+  FOREIGN KEY (idEvent) REFERENCES events (id) ON DELETE CASCADE
 )
 
 INSERT INTO events (name, description) VALUES ('Event 1', 'Event 1 description');
@@ -35,9 +35,21 @@ DROP TABLE users;
 DROP TABLE events;
 DROP TABLE userEvents
 
+DELETE FROM events WHERE id = 4;
+
 SELECT * FROM users;
 SELECT * FROM events;
 SELECT * from userEvents;
+
+INSERT INTO userEvents (idUser, idEvent) VALUES ('1', '4'), ('2', '1'), ('2', '3'), ('1', '2');
+
+SELECT users.username, events.name FROM users
+INNER JOIN userEvents ON userEvents.idUser = users.id
+INNER JOIN events ON userEvents.idEvent = events.id
+WHERE
+users.id = 1;
+
+DELETE FROM userEvents WHERE idUser = 1 and idEvent = 2;
 
 PRAGMA TABLE_info(events);
 

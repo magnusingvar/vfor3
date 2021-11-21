@@ -29,7 +29,8 @@
       </div>
     </form>
       
-    <form action="delete" id="delete" method="POST">
+    <form action="/delete" id="delete" method="POST">
+      <input type="hidden" name="idEvent" value="<%= event.id %>" placeholder=" ">
       <input type="submit" class="deleteBtn" value="Delete">
     </form>
   </div>

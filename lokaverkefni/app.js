@@ -16,6 +16,9 @@ const readEvents = require('./routes/read/events');
 const loginPage = require('./routes/login');
 const registerPage = require('./routes/register');
 
+const signup = require('./routes/signup');
+const cancel = require('./routes/cancel');
+
 const app = express();
 
 app.use(session({
@@ -41,7 +44,10 @@ app.use('/event', readEvent)
 // app.use('/contact', contactPage);
 app.use('/register', registerPage); 
 app.use('/createEvent', createEvent);
+app.use('/delete', deleteEvent);
 app.use('/updateEvent', updateEvent);
+app.use('/signup', signup);
+app.use('/cancel', cancel);
 
 // errors : page not found
 app.use((req, res) => {

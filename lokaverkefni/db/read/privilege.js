@@ -1,9 +1,9 @@
 const Database = require('better-sqlite3');
 
-module.exports = function checkPrivilege(dbFile, username) {
+module.exports = function getUserInfo(dbFile, username) {
   const db = new Database(dbFile);
-  const sql = db.prepare('SELECT userPrivilege from users where username = ?')
-  const userPrivilege = sql.get(username);
+  const sql = db.prepare('SELECT id, userPrivilege from users where username = ?')
+  const userInfo = sql.get(username);
   db.close();
-  return userPrivilege;
+  return userInfo;
 };

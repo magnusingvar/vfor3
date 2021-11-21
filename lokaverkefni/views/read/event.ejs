@@ -32,6 +32,18 @@
       </form>
       <!-- <button> <a href="">Edit</a> </button>  -->
     <% } %>
+    
+    <% if ( signedUp == "False") { %>
+      <form action="/signup" method="POST">
+        <button type="submit" class="customBtn">signup</button>
+        <input type="hidden" name="idEvent" id="idEvent" value="<%= event.id %>"></form>
+      </form>
+    <% } %>
+
+    <form action="/cancel" method="POST">
+      <button type="submit" class="customBtn">cancel</button>
+      <input type="hidden" name="idEvent" id="idEvent" value="<%= event.id %>"></form>
+    </form>
 
     <div class="imgContainer">
       <img src="images/uploads/<%- event.image %>" class="image">
