@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/eventPage.css">
   <link rel="stylesheet" href="/css/navbar.css">
+  <title><%= title %></title>
 </head>
 <body>
   <%- include ('../includes/navbar') -%>
@@ -16,35 +17,32 @@
     <div class="date">
       <p>
         <span class="day">
-          <%= event.day %>
-        </span>
-        <span class="month">
-          <%= event.month %>
-        </span>
-        <span class="year">
-          <%= event.year %>
+          <%= event.date %>
         </span>
       </p>
     </div>
-    <% if (userPrivilege == "Admin") { %>
-      <form action="/updateEvent" method="GET"><button type="submit" class="customBtn">Update</button>
-        <input type="hidden" name="idEvent" id="idEvent" value="<%= event.id %>"></form>
-      </form>
-      <!-- <button> <a href="">Edit</a> </button>  -->
-    <% } %>
-    
-    <% if ( signedUp == "False") { %>
-      <form action="/signup" method="POST">
-        <button type="submit" class="customBtn">signup</button>
-        <input type="hidden" name="idEvent" id="idEvent" value="<%= event.id %>"></form>
-      </form>
-    <% } %>
+    <% if (username != 'none') { %>
+      <% if (userPrivilege == "Admin") { %>
+        <form action="/updateEvent" method="GET"><button type="submit" class="customBtn">Update</button>
+          <input type="hidden" name="idEvent" id="idEvent" value="<%= event.id %>"></form>
+        </form>
+        <!-- <button> <a href="">Edit</a> </button>  -->
+      <% } %>
 
-    <form action="/cancel" method="POST">
-      <button type="submit" class="customBtn">cancel</button>
-      <input type="hidden" name="idEvent" id="idEvent" value="<%= event.id %>"></form>
-    </form>
-
+      <% if (userEvent.length <= 0) { %>
+        <form action="/signup" method="POST">
+          <button type="submit" class="btn">Signup for event</button>
+          <input type="hidden" name="idEvent" id="idEvent" value="<%= event.id %>"></form>
+        </form>
+      <% } else { %>
+        <form action="/cancel" method="POST">
+          <button type="submit" class="btn">Withdraw from event </button>
+          <input type="hidden" name="idEvent" id="idEvent" value="<%= event.id %>"></form>
+        </form>
+      <% } %>
+    <% } else { %>
+      <p>To sign up for an event, please log in.</p>
+    <% } %>
     <div class="imgContainer">
       <img src="images/uploads/<%- event.image %>" class="image">
     </div>

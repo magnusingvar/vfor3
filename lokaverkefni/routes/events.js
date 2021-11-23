@@ -6,7 +6,7 @@ const getEvents = require('../db/getEvents');
 const update = require('../db/update/updateEvent');
 const deleteEvent = require('../db/delete/deleteEvent');
 const multer = require('multer');
-const checkPrivilege = require('../db/read/privilege');
+const readUser = require('../db/read/readUser');
 const signup = require('../db/signup');
 
 router.get('/', (req, res) => {
@@ -15,16 +15,14 @@ router.get('/', (req, res) => {
   // Check if user is logged in
   if (req.session.loggedIn) {
     const username = req.session.username;
-    const userPrivilege = checkPrivilege(dbFile, username).userPrivilege;
+    const userPrivilege = readUser(dbFile, username).userPrivilege;
     const header01 = 'Events'
-	  const userValue = 'Log out';
-    res.render('events', { title: 'Events', header01, userValue, events, userPrivilege})
+    res.render('events', { title: 'Events', header01, userValue: 'Log out', events, userPrivilege})
   } else {
     const username = 'none';
-    const userPrivilege = checkPrivilege(dbFile, username);
+    const userPrivilege = readUser(dbFile, username);
     const header01 = 'Events'
-    const userValue = 'Login';
-    res.render('events', { title: 'Events', header01, userValue, events, userPrivilege})
+    res.render('events', { title: 'Events', header01, userValue: 'Login', events, userPrivilege})
   }
 });
 

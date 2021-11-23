@@ -18,6 +18,7 @@ const registerPage = require('./routes/register');
 
 const signup = require('./routes/signup');
 const cancel = require('./routes/cancel');
+const myEvents = require('./routes/read/userEvent');
 
 const app = express();
 
@@ -48,7 +49,9 @@ app.use('/delete', deleteEvent);
 app.use('/updateEvent', updateEvent);
 app.use('/signup', signup);
 app.use('/cancel', cancel);
+app.use('/myevents', myEvents);
 
+// errors : page not found
 // errors : page not found
 app.use((req, res) => {
   res.status(404);
@@ -58,7 +61,7 @@ app.use((req, res) => {
 // handling errors
 app.use((err, req, res) => {
   res.status(err.status || 500);
-  res.send(err.message);
+  res.render('error', { title: 'Error', status: res.status || 500, msg: 'An error occured!' });
 });
 
 // setting up the server

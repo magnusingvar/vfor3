@@ -1,9 +1,13 @@
 const Database = require('better-sqlite3');
 
-module.exports = function checkIfExists(dbFile, idUser, idEvent) {
+module.exports = function checkIfExists(dbFile, where) {
   const db = new Database(dbFile);
-  const sql = db.prepare('SELECT idUser, idEvent from userEvents WHERE idUser = ? AND idEvent = ?;');
-  const user = sql.get(idUser, idEvent);
+  const sql = db.prepare(`
+    SELECT events.name from events 
+    INNER JOIN userEvents ON userEvents.idEvent = events.id
+    ${where}`);
+  // const sql = db.prepare('SELECT idUser, idEvent from userEvents WHERE idUser = ? AND idEvent = ?;');
+  const events = sql.all();
   db.close();
-  return user;
+  return events;
 }

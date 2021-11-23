@@ -2,14 +2,14 @@ const express = require('express');
 const path = require('path');
 const testCancel = require('../db/delete/eventCancel');
 const router = express.Router();
-const readUserPrivilege = require('../db/read/privilege');
+const readUser = require('../db/read/readUser');
 const dbFile = path.join(__dirname, '../db/database.db');
 
 router.post('/', (req, res) => {
   const username = req.session.username;
-  const user = readUserPrivilege(dbFile, username).id;
+  const user = readUser(dbFile, username).id;
   testCancel(dbFile, user, req.body.idEvent);
-  res.redirect('/');
+  res.redirect(`/event?idEvent=${req.body.idEvent}`)
 });
 
 module.exports = router;

@@ -11,9 +11,7 @@ CREATE TABLE events (
   id INTEGER PRIMARY KEY, 
   name TEXT NOT NULL,
   description TEXT,
-  year INTEGER,
-  month INTEGER,
-  day INTEGER,
+  date TEXT,
   image TEXT DEFAULT 'imgNotFound.jpg'
 );
 

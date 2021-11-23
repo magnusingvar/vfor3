@@ -5,9 +5,21 @@
       <% for (let i = 0; i < events.length; i += 1) { %>
         <div class="grid-item">
           <a href="/event?idEvent=<%= events[i].id %>">
-            TEST
+            <div class="container">
+              <div class="image">
+                <img src="images/uploads/<%- events[i].image %>">
+              </div>
+              <div class="title">
+                <h3>
+                  <%= events[i].name %>
+                </h3>
+              </div>
+            </div>
           </a>
-        </div>
+          <p>
+            <span><%= events[i].date %></span>
+          </p>
+          </div>
       <% } %>
     </div>
   </div>

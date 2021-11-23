@@ -4,7 +4,7 @@ const path = require('path');
 const loginUser = require('../db/loginFunction');
 const bcrypt = require('bcrypt');
 const dbFile = path.join(__dirname, '../db/database.db');
-const test = require('../db/read/privilege');
+const readUser = require('../db/read/readUser');
 
 /* if user is logged in and presses the 'log in / out'
 button then log him out. */
@@ -15,10 +15,9 @@ router.get('/', (req, res) => {
 		res.redirect('/');
 	} else {
 		const header = 'Login';
-		const userValue = 'Login';
 		const username = 'none';
-    let userPrivilege = test(dbFile, username);
-		res.render('login', { title: 'Login', header, userValue, userPrivilege});
+    let userPrivilege = readUser(dbFile, username);
+		res.render('login', { title: 'Login', header, userValue: 'Login', userPrivilege});
 	}
 });
 

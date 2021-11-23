@@ -20,7 +20,7 @@
       <% for (let i = events.length - 1; i >= events.length - 4; i -= 1) { %>
           <div class="grid-item">
             <a href="/event?idEvent=<%= events[i].id %>">
-              <div class="container">
+              <div class="containe  r">
                 <div class="image">
                   <img src="images/uploads/<%- events[i].image %>">
                 </div>
@@ -31,14 +31,12 @@
                 </div>
               </div>
             </a>
-            <p>
-              <span><%= events[i].day %>/</span>
-              <span><%= events[i].month %>/</span>
-              <span><%= events[i].year %></span>
-            </p>
-            </div>
-          <% } %>
+          </div>
         <% } %>
+      <% } else { %>
+          <p>Not enough events available.
+          <a href="/events">Go to events page</a></p>
+      <% } %> 
       </div>
     </div>
   </div>
