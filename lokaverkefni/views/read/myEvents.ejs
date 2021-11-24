@@ -6,27 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/navbar.css">
-  <link rel="stylesheet" href="css/events.css">
-
+  <link rel="stylesheet" href="css/grid.css">
   <title><%= title %></title>
 </head>
 <body>
-  <%- include('../includes/navbar') %>
-  <% if (status === "error") { %>
-    <p>Cannot view events you are signed up for, as you are not currently logged in.</p>
-  <% } else { %>
-    <div id="content">
-      <h1>My events</h1>
-      <% if (events.length > 0) { %>
-        <% for (let i = 0; i < events.length; i += 1) { %>
-          <p><%= events[i].name %></p>
-        <% } %>
-      <% } else { %>
-        <p>
-          You are currently not signed up for any events.
-        </p>
-      <% } %>
-    </div>
-  <% } %>
+<%- include('../includes/navbar') %>
+<% if (events.length > 0) { %>
+  <%- include('../includes/eventTable') %>
+<% } else { %>
+  <p>
+    You are currently not signed up for any events.
+  </p>
+<% } %>
 </body>
 </html>

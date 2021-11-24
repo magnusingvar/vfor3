@@ -4,25 +4,28 @@ const createEvent = require('../../db/create/createEvent');
 const router = express.Router();
 const dbFile = path.join(__dirname, '../../db/database.db');
 
+const d = new Date(); 
+const y = d.getFullYear();
+
+const m = ['January', 'February', 'March',
+'April', 'May', 'June', 'July', 'August',
+'September', 'October', 'November', 'December'];
+
 router.get('/', (req, res) => {
   if (req.session.loggedIn) {
-    res.render('create/event', { title: 'Create event'} );
+    res.render('create/event', { title: 'Create event', m, y} );
   } else {
     const username = 'none';
     res.render('error', { title: 'Error', status: 403, msg: `You don't have permission to perform this action.`, username });
   }
 });
 
-const m = ['January', 'February', 'March',
-'April', 'May', 'June', 'July', 'August',
-'September', 'October', 'November', 'December'];
-
 router.post('/', (req, res) => {
   if (req.session.loggedIn) {
     const d = new Date(); 
     const date = req.body.day;
     console.log(date)
-    const month = m[req.body.month-1];
+    const month = req.body.month;
     const year = req.body.year
 
     const evDate = `${date} ${month} ${year}`

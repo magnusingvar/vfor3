@@ -13,7 +13,7 @@
 <%- include('includes/navbar') %>
 <div id="content">
   <div id="grid-container">
-    <h2><%= header01 %></h2>
+    <h2><%= header %></h2>
     <div id="grid">
     <% if (events.length >= 4) { %>
       <% for (let i = events.length - 1; i >= events.length - 4; i -= 1) { %>
@@ -34,7 +34,7 @@
         <% } %>
       <% } else { %>
           <p>Not enough events available.
-          <a href="/events">Go to events page</a></p>
+          <a href="/events" class="link">Go to events page</a></p>
       <% } %> 
       </div>
     </div>

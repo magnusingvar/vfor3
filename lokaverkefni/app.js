@@ -41,14 +41,13 @@ app.use('/events', readEvents);
 app.use('/event', readEvent)
 app.use('/contact', contactPage);
 app.use('/register', registerPage); 
-app.use('/createEvent', createEvent);
+app.use('/create', createEvent);
 app.use('/delete', deleteEvent);
 app.use('/updateEvent', updateEvent);
 app.use('/signup', signup);
 app.use('/cancel', cancel);
 app.use('/myevents', myEvents);
 
-// errors : page not found
 // errors : page not found
 app.use((req, res) => {
   res.status(404);

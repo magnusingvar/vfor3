@@ -17,9 +17,31 @@
     <input type="text" name="name" class="name" value="<%= event.name %>">
     <input type="text" name="description" id="description" class="description" value="<%= event.description %>">
     <div id="date">
-      <input type="text" name="day" id="day" value="<%= event.date.split(" ")[0] %>">
-      <input type="text" name="month" id="month" value="<%= event.date.split(" ")[1] %>">
-      <input type="text" name="year" id="year" value="<%= event.date.split(" ")[2] %>">
+      <select name="day" id="day">
+        <% for (let i = 1; i < 32; i += 1){ %>
+          <option value="<%= i %>"
+            <% if (eventDay == i) { %> selected<% } %>>
+              <%= i %>
+          </option>
+        <% } %>
+      </select>
+      <select name="month" id="month">
+          <% for (let i = 0; i < 12; i += 1) { %>
+            <option value="<%= m[i] %>"
+              <% if (eventMonth == m[i]) { %> selected <% } %>>
+                <%= m[i] %>
+            </option>
+          <% } %>
+        </select>
+
+        <select name="year" id="year">
+          <% for (let i = y; i < 2101; i += 1) { %>
+            <option value="<%= i %>"
+              <% if (eventYear == i) { %> selected <% } %>> 
+                <%= i %>
+            </option>
+          <% } %>
+        </select>
     </div>
     <input type="submit" class="updateBtn" value="Update">
     <div class="imageUpload">

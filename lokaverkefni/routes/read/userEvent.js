@@ -6,6 +6,8 @@ const getEvents = require('../../db/read/readUserEvent');
 const readUser = require('../../db/read/readUser');
 
 router.get('/', (req, res) => {
+  const header = 'My events';
+
   if (req.session.loggedIn) {
     const username = req.session.username;
     const userPrivilege = readUser(dbFile, username).userPrivilege;
@@ -13,11 +15,12 @@ router.get('/', (req, res) => {
     let where = `WHERE idUser = ${user}`;
     const events = getEvents(dbFile, where)
     console.log(events)
-    res.render('./read/myEvents', { title: 'My Events', status: 'working', username, events, userPrivilege } )
+    res.render('./read/myEvents', { title: 'My Events', header, username, events, userPrivilege } )
   } else {
     const username = 'none';
     const userPrivilege = readUser(dbFile, username);
-    res.render('./read/myEvents', { title: 'Error', status: 'error', username, userPrivilege})
+    const events = [];
+    res.render('./read/myEvents', { title: 'My Events', header, username, userPrivilege, events})
   } 
 });
 

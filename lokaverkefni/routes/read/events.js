@@ -7,18 +7,18 @@ const readUser = require('../../db/read/readUser');
 
 router.get('/', (req, res) => {
   let where = 'WHERE id';
-  const events = getEvents(dbFile, where)
+  const events = getEvents(dbFile, where);
+  const header = 'Events';
+
   // Check if user is logged in
   if (req.session.loggedIn) {
     const username = req.session.username;
     const userPrivilege = readUser(dbFile, username).userPrivilege;
-    const header01 = 'Events'
-    res.render('events', { title: 'Events', header01, events, username, userPrivilege})
+    res.render('events', { title: 'Events', header, events, username, userPrivilege})
   } else {
     const username = 'none';
     const userPrivilege = readUser(dbFile, username);
-    const header01 = 'Events'
-    res.render('events', { title: 'Events', header01, events, username, userPrivilege})
+    res.render('events', { title: 'Events', header, events, username, userPrivilege})
   }
 });
 
