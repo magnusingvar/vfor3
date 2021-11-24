@@ -1,8 +1,6 @@
 #content {
-  padding: 20px;
-  text-align: center;
-  margin: 0 auto;
-  align-items: center;
+  margin: 10px 0 0 0;
+  text-align: center; 
 }
 
 h1 {
@@ -10,11 +8,56 @@ h1 {
   margin: 0
 }
 
-.imgContainer img {
+#event-name, #event-description, #event-date,
+.edit-container, .signup-container,
+.withdraw-container{
+  margin: 5px 0 5px 0;
+}
+
+#update-btn {
+  background: #0e84f1;
+  color: #fff;
+  padding: 8px;
+  border: 0px;
+  border-radius: 5px;
+}
+
+#signup-btn {
+  background: #00B107;
+  color: #fff;
+  padding: 8px;
+  border: 0;
+  border-radius: 5px;
+}
+
+#withdraw-btn {
+  background: #c7180b ;
+  color: #fff;
+  padding: 8px;
+  border: 0px;
+  border-radius: 5px;
+}
+
+.img-container {
+  position: relative;
+  display: inline-block;
+  width: 400px;
+  height: 400px;
+  margin: 5px 0 0 0;
+}
+
+.img-container .image {
+  position: relative;
+  border: 2px solid #000;
+  border-radius: 7px;
+}
+
+/* .img-container img {
   position: relative;
   width: 400px;
   height: 400px;
-}
+  margin: 10px 0 0 0;
+} */
 
 form#edit {
   position: relative;
@@ -98,6 +141,6 @@ input.updateBtn {
   margin: 15px;
   padding: 10px;
   border: 1px solid #000;
-  background: red;
+  background: #F32013;
   color: #fff;
 }

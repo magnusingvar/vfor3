@@ -6,10 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/contactForm.css">
   <title><%= title %></title>
 </head>
 <body>
   <%- include ('includes/navbar') -%>
-  <%- include ('includes/contactForm') -%>
+  <div id="content">
+    <div id="container">
+      <h2><%= header %></h2>
+      <%- include ('includes/contactForm') -%>
+    </div>
+  </div>
 </body>
 </html>

@@ -1,0 +1,21 @@
+#container {
+  margin: 0 auto;
+}
+
+#container, form{
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+h2 {
+  margin: 0 0 10px 0;
+}
+
+
+#container form input, 
+#message, .btn {
+  padding: 5px;
+  margin: 1px 0 10px 0;
+}

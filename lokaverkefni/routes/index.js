@@ -12,12 +12,12 @@ router.get('/', (req, res) => {
     const username = req.session.username;
     const userPrivilege = readUser(dbFile, username).userPrivilege;
     const header01 = 'New events';
-    res.render('index', { title: 'Forsíða', header01, userValue: 'Log out', events, userPrivilege});
+    res.render('index', { title: 'Forsíða', header01, events, username, userPrivilege});
   } else {
     const username = 'none';
     const userPrivilege = readUser(dbFile, username);
     const header01 = 'New events';
-    res.render('index', { title: 'Forsíða', header01, userValue: 'Login', events, userPrivilege});
+    res.render('index', { title: 'Forsíða', header01, events, username, userPrivilege});
   }
 });
 

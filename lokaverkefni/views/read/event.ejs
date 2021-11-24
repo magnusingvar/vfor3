@@ -5,48 +5,54 @@
   <meta http-equiv="X-UA-Compatile" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/css/eventPage.css">
   <link rel="stylesheet" href="/css/navbar.css">
+  <link rel="stylesheet" href="/css/eventPage.css">
   <title><%= title %></title>
 </head>
 <body>
   <%- include ('../includes/navbar') -%>
   <div id="content">
-    <h1><%= event.name %></h1>
-    <p><%= event.description %></p>
-    <div class="date">
+    <h1 id="event-name"><%= event.name %></h1>
+    <p id="event-description"><%= event.description %></p>
+    <div id="event-date">
       <p>
         <span class="day">
           <%= event.date %>
         </span>
       </p>
     </div>
+    
+    <div class="img-container">
+      <img src="images/uploads/<%- event.image %>" class="image">
+    </div>
+
     <% if (username != 'none') { %>
       <% if (userPrivilege == "Admin") { %>
-        <form action="/updateEvent" method="GET"><button type="submit" class="customBtn">Update</button>
-          <input type="hidden" name="idEvent" id="idEvent" value="<%= event.id %>"></form>
-        </form>
-        <!-- <button> <a href="">Edit</a> </button>  -->
+        <div class="edit-container">
+          <form action="/updateEvent" method="GET"><button type="submit" class="btn" id="update-btn">Update</button>
+            <input type="hidden" name="idEvent" id="idEvent" value="<%= event.id %>"></form>
+          </form>
+        </div>
       <% } %>
-
+  
       <% if (userEvent.length <= 0) { %>
-        <form action="/signup" method="POST">
-          <button type="submit" class="btn">Signup for event</button>
-          <input type="hidden" name="idEvent" id="idEvent" value="<%= event.id %>"></form>
-        </form>
+        <div class="signup-container">
+          <form action="/signup" method="POST">
+            <button type="submit" class="btn" id="signup-btn">Signup for event</button>
+            <input type="hidden" name="idEvent" id="idEvent" value="<%= event.id %>"></form>
+          </form>
+        </div>
       <% } else { %>
+      <div class="withdraw-container">
         <form action="/cancel" method="POST">
-          <button type="submit" class="btn">Withdraw from event </button>
+          <button type="submit" class="btn" id="withdraw-btn">Withdraw from event </button>
           <input type="hidden" name="idEvent" id="idEvent" value="<%= event.id %>"></form>
         </form>
+      </div>
       <% } %>
     <% } else { %>
       <p>To sign up for an event, please log in.</p>
     <% } %>
-    <div class="imgContainer">
-      <img src="images/uploads/<%- event.image %>" class="image">
-    </div>
-
   </div>
 </body>
 </html>

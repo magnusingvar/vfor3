@@ -13,11 +13,11 @@ router.get('/', (req, res) => {
     let where = `WHERE idUser = ${user}`;
     const events = getEvents(dbFile, where)
     console.log(events)
-    res.render('./read/myEvents', { title: 'My Events', status: 'working', userValue: 'Log out', events, userPrivilege } )
+    res.render('./read/myEvents', { title: 'My Events', status: 'working', username, events, userPrivilege } )
   } else {
     const username = 'none';
     const userPrivilege = readUser(dbFile, username);
-    res.render('./read/myEvents', { title: 'Error', status: 'error', userValue: 'Login', userPrivilege})
+    res.render('./read/myEvents', { title: 'Error', status: 'error', username, userPrivilege})
   } 
 });
 

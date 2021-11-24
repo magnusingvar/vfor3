@@ -1,7 +1,43 @@
-body {
-  margin: 0px;
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 #content {
-  margin: 0px 10px;
+  margin: 40px 0 0 0;
+}
+
+.btn:hover {
+  opacity: 0.85;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 900px) {
+
+
+  #grid-container {
+    display: grid;
+    text-align: center;
+    justify-content: center;
+  }
+
+  div#grid-container div#grid {
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+  }
+  
+  div#grid {
+    display: grid;
+    grid-template-columns: repeat(2, 210px);
+    gap: 0px;
+    margin: 0 auto;
+  }
+
+
+  div.grid-item, div.grid-item .image {
+    width: 170px;
+    height: 170px;
+  }
 }

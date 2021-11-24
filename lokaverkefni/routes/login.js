@@ -10,14 +10,13 @@ const readUser = require('../db/read/readUser');
 button then log him out. */
 router.get('/', (req, res) => {
 	if (req.session.loggedIn) {
-		req.session.loggedIn = false;
 		console.log('Log out successful!')
 		res.redirect('/');
 	} else {
 		const header = 'Login';
 		const username = 'none';
     let userPrivilege = readUser(dbFile, username);
-		res.render('login', { title: 'Login', header, userValue: 'Login', userPrivilege});
+		res.render('login', { title: 'Login', header, username, userPrivilege});
 	}
 });
 
@@ -25,11 +24,11 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
 	const username = req.body.username;
 	const password = req.body.password;
-	const userFromDB = loginUser(dbFile, username, password);
-	const validPass = bcrypt.compareSync(password, userFromDB.password);
+	const user = loginUser(dbFile, username, password);
+	const validPass = bcrypt.compareSync(password, user.password);
 	if (validPass) {
 		req.session.loggedIn = true;
-		req.session.username = username;
+		req.session.username = user.username;
 		console.log('Success');
 		res.redirect('/');
 	} else {

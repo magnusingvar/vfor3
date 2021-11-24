@@ -3,22 +3,18 @@ const path = require('path');
 const session = require('express-session');
 const colors = require('colors');
 const frontPage = require('./routes/');
-
 const createEvent = require('./routes/create/createEvent');
-
 const updateEvent = require('./routes/update/updateEvent');
-
 const deleteEvent = require('./routes/delete/deleteEvent');
-
 const readEvent = require('./routes/read/event');
 const readEvents = require('./routes/read/events');
-
 const loginPage = require('./routes/login');
+const logout = require('./routes/logout');
 const registerPage = require('./routes/register');
-
-const signup = require('./routes/signup');
-const cancel = require('./routes/cancel');
+const signup = require('./routes/functions/signupEvent');
+const cancel = require('./routes/functions/withdrawEvent');
 const myEvents = require('./routes/read/userEvent');
+const contactPage = require('./routes/contact');
 
 const app = express();
 
@@ -40,9 +36,10 @@ app.set('view engine', 'ejs');
 // routers
 app.use('/', frontPage);
 app.use('/login', loginPage);
+app.use('/logout', logout);
 app.use('/events', readEvents);
 app.use('/event', readEvent)
-// app.use('/contact', contactPage);
+app.use('/contact', contactPage);
 app.use('/register', registerPage); 
 app.use('/createEvent', createEvent);
 app.use('/delete', deleteEvent);

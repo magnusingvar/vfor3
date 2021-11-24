@@ -4,47 +4,39 @@ const nodemailer = require('nodemailer');
 require('dotenv').config();
 const path = require('path');
 const dbFile = path.join(__dirname, '../db/database.db');
-const checkPrivilege = require('../db/read/privilege');
+const readUser = require('../db/read/readUser');
 
 router.get('/', (req, res) => {
   if (req.session.loggedIn) {
+    const header = 'Contact'
     const username = req.session.username;
-    const userPrivilege = checkPrivilege(dbFile, username).userPrivilege;
-		const userValue = 'Log out';
-    res.render('contact', { title: 'Contact us', userValue, userPrivilege});
+    const userPrivilege = readUser(dbFile, username).userPrivilege;
+    res.render('contact', { title: 'Contact us', header, username, userPrivilege});
 	} else {
+    const header = 'Contact'
     const username = 'none';
-    const userPrivilege = checkPrivilege(dbFile, username);
-    const userValue = 'Login';
-    res.render('contact', { title: 'Contact us', userValue, userPrivilege});
+    const userPrivilege = readUser(dbFile, username);
+    res.render('contact', { title: 'Contact us', header, username, userPrivilege});
   }
 });
 
 router.post('/', (req, res) => {
-  if (req.session.loggedIn) {
-		const userValue = 'Log out';
-    res.render('contact', { title: 'Contact us', userValue });
-	} else {
-    const userValue = 'Login';
-    res.render('contact', { title: 'Contact us', userValue });
-  }
   let transport = nodemailer.createTransport({
-    // host: 'smtp.mailtrap.io',
-    host: 'smtp.gmail.com',
-    // port: 2525,
-    port: 465,
-    secure: true,
+    host: "smtp.mailtrap.io",
+    port: 2525,
     auth: {
-      user: process.env.EMAIL_USERNAME,
-      pass: process.env.EMAIL_PASSWORD
+      user: "ed0b93b031f80c",
+      pass: "7dd9c187311065"
     }
   });
 
   const mailOptions = {
-    // from: 'vfor3jq05@gmail.com',
-    from: req.body.email,
-    to: 'magnusnodemailer@gmail.com',
-    subject: 'Sending Email using Node.js',
+    from: {
+      name: req.body.name,
+      address: req.body.email
+    },
+    to: 'vfor3jq05@gmail.com',
+    subject: req.body.subject,
     text: req.body.message
   };
 
@@ -55,6 +47,8 @@ router.post('/', (req, res) => {
       console.log('Email sent: ' + info.response);
     }
   });
+
+  res.redirect('/')
 });
 
-module.exports = router;
+module.exports = router;    

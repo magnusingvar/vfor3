@@ -6,12 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/navbar.css">
-  <link rel="stylesheet" href="css/events.css">
-
+  <link rel="stylesheet" href="css/grid.css">
   <title><%= title %></title>
 </head>
 <body>
-<%- include ('includes/navbar') -%>
+<%- include('includes/navbar') %>
 <div id="content">
   <div id="grid-container">
     <h2><%= header01 %></h2>
@@ -20,7 +19,7 @@
       <% for (let i = events.length - 1; i >= events.length - 4; i -= 1) { %>
           <div class="grid-item">
             <a href="/event?idEvent=<%= events[i].id %>">
-              <div class="containe  r">
+              <div class="container">
                 <div class="image">
                   <img src="images/uploads/<%- events[i].image %>">
                 </div>
