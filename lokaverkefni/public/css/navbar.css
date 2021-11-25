@@ -1,13 +1,43 @@
-ul {
+#navbar > ul > li {
+  padding: 14px 16px;
+  color: #fff;
+}
+
+#navbar > * {
+  list-style: none;
   font-family: Arial, Helvetica, sans-serif;
-  list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
   background-color: #333;
 }
 
+.navbar-mobile {
+  display: none;
+}
+
+.dropdown * {
+  display: inline-block;
+  width: 100%;
+  margin: 0;
+}
+
+.dropdown {
+  margin: 14px 0 0 0;
+  position: absolute;
+  left: 0;
+  border-radius: 0 0 6px 6px;
+  display: flex;
+  background: #333;
+  padding: 12px 5px 12px 5px;
+}
+
+.nav-item {
+  padding: 2px;
+}
+
 li {
+  list-style: none;
   float: left;
 }
 
@@ -15,10 +45,23 @@ li a {
   display: block;
   color: white;
   text-align: center;
-  padding: 14px 16px;
   text-decoration: none;
 }
 
 li a:hover {
   background-color: #111;
+}
+
+.hamburger-btn:not(:hover) > .dropdown {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .navbar-desktop {
+    display: none;
+  }
+
+  .navbar-mobile {
+    display: block;
+  }
 }

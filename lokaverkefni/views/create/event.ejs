@@ -4,35 +4,13 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/eventPage.css">
   <title><%= title %></title>
 </head>
 <body>
-  <form action="/create" id="create" method="POST">
-    <input type="text" name="name" class="name">
-    <input type="text" name="description" class="description">
-    <input type="submit" value="Create">
-    <br><br>
-
-    <select name="day" id="day">
-      <% for (let i = 1; i < 32; i += 1){ %>
-        <option value="<%= i %>">
-          <%= i %>
-        </option>
-      <% } %>
-    </select>
-
-    <select name="month" id="month">
-      <% for (let i = 0; i < m.length; i += 1) { %>
-        <option value="<%= m[i] %>"><%= m[i] %></option>
-      <% } %>
-    </select>
-    <select name="year" id="year">
-      <% for (let i = y; i < 2101; i += 1) { %>
-        <option value="<%= i %>"> 
-            <%= i %>
-        </option>
-      <% } %>
-    </select>
-  </form>
+  <%- include('../includes/navbar') %>
+  <%- include('../includes/create/createForm') %>
 </body>
 </html>

@@ -37,7 +37,7 @@
 
 @media screen and (max-width: 900px) {
   
-  #grid {
+  div#grid {
     display: grid;
     grid-template-columns: repeat(3, auto);
     gap: 0px;
@@ -45,26 +45,28 @@
     margin: 0 auto;
   }
   
-  .grid-item {
-    width: 180px;
+  div.grid-item {
+    width: auto;
     height: auto;
-    padding: 10px 10px 20px 10px;
   }
   
-  .image {
+  div.image {
     width: 180px;
     height: 180px;
     margin: 0px 0px 15px 0px;
   }
   
-  .image img {
+  div.image img {
     width: 100%;
     border-radius: 9px;
   }
 }
 
 @media screen and (max-width: 600px) {
-  #grid {
+  div.test {
+    display: block;
+  }
+  div#grid {
     display: grid;
     grid-template-columns: repeat(2, auto);
     gap: 0px;
@@ -72,8 +74,8 @@
     margin: 0 auto;
   }
   
-  .grid-item {
-    width: 160px;
+  div.grid-item {
+    width: auto;
     height: auto;
     padding: 20px;
   }
@@ -92,18 +94,17 @@
 
 @media screen and (max-width: 400px) {
 
-  #grid {
+  div#grid {
     display: grid;
     grid-template-columns: repeat(1, auto);
     gap: 0px;
-    width: 100%;
-    margin: 0 auto;
+    width: 100%;;
+    margin: 0 auto
   }
   
-  .grid-item {
-    width: 160px;
+  div.grid-item {
+    width: auto;
     height: auto;
-    padding: 10px 0 20px 0;
   }
   
   .image {

@@ -1,0 +1,22 @@
+<ul class="navbar-mobile">
+  <li class="hamburger-btn nav-item">☰
+    <div class="dropdown">
+      <ul>
+        <li class="nav-item"><a href="/contact">Contact</a></li>
+        <% try { if (userPrivilege == "Admin") { %>
+          <li class="nav-item"><a href="/create">Create Event</a></li>
+        <% }} catch (e) {} %>
+        <li class="nav-item"><a href="/myEvents">My Events</a></li>
+      </ul>
+    </div>
+  </li>
+  <li class="nav-item"><a href="/">Home</a></li>
+  <li class="nav-item"><a href="/events">Events</a></li>
+  <li class="nav-item" style="float: right;">
+    <% if (username == 'none') { %>
+      <a href="/login">Login</a>
+    <% } else { %>
+      <a href="/logout">Logout</a>
+    <% } %>
+    </li>
+</ul>
