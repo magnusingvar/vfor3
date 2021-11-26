@@ -29,7 +29,8 @@
     <% if (username != 'none') { %>
       <% if (userPrivilege == "Admin") { %>
         <div class="edit-container">
-          <form action="/updateEvent" method="GET"><button type="submit" class="btn" id="update-btn">Update</button>
+          <form action="/updateEvent" method="GET">
+            <button type="submit" class="btn" id="update-btn">Update</button>
             <input type="hidden" name="idEvent" id="idEvent" value="<%= event.id %>"></form>
           </form>
         </div>

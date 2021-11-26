@@ -5,16 +5,16 @@ require('dotenv').config();
 const path = require('path');
 const dbFile = path.join(__dirname, '../db/database.db');
 const readUser = require('../db/read/readUser');
+const userLoggedIn = require('../functions/userSession');
 
 router.get('/', (req, res) => {
+  const username = userLoggedIn(req.session);
   if (req.session.loggedIn) {
     const header = 'Contact'
-    const username = req.session.username;
     const userPrivilege = readUser(dbFile, username).userPrivilege;
     res.render('contact', { title: 'Contact us', header, username, userPrivilege});
 	} else {
     const header = 'Contact'
-    const username = 'none';
     const userPrivilege = readUser(dbFile, username);
     res.render('contact', { title: 'Contact us', header, username, userPrivilege});
   }

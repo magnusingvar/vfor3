@@ -1,22 +1,31 @@
-<ul class="navbar-mobile">
-  <li class="hamburger-btn nav-item">☰
-    <div class="dropdown">
-      <ul>
-        <li class="nav-item"><a href="/contact">Contact</a></li>
-        <% try { if (userPrivilege == "Admin") { %>
-          <li class="nav-item"><a href="/create">Create Event</a></li>
-        <% }} catch (e) {} %>
-        <li class="nav-item"><a href="/myEvents">My Events</a></li>
-      </ul>
-    </div>
-  </li>
-  <li class="nav-item"><a href="/">Home</a></li>
-  <li class="nav-item"><a href="/events">Events</a></li>
-  <li class="nav-item" style="float: right;">
-    <% if (username == 'none') { %>
-      <a href="/login">Login</a>
-    <% } else { %>
-      <a href="/logout">Logout</a>
-    <% } %>
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+ <ul class="navbar-mobile"> 
+    <li>
+      <div class="dropdown">
+        <a class="dropbtn" onclick="myFunction()">
+          &#8801;
+        </a>
+        <div class="dropdown-content" id="myDropdown">
+          <a href="/contact">Contact</a>
+          <a href="/myEvents">My Events</a>
+          <% try { if (userPrivilege == "Admin") { %>
+            <a href="/create">Create Event</a>
+          <% }} catch (e) {} %>
+        </div>
+        <script src="js/script.js"></script>
+      </div>
     </li>
-</ul>
+
+    <li><a href="/">Home</a></li>
+    <li><a href="/events">Events</a></li>
+
+    <li style="float: right;">
+      <% if (username == 'none') { %>
+        <a href="/login">Login</a>
+      <% } else { %>
+        <a href="/logout">Logout</a>
+      <% } %>
+      </li>
+  </ul>

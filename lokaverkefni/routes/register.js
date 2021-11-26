@@ -4,16 +4,16 @@ const path = require('path');
 const readUser = require('../db/read/readUser');
 const registerUser = require('../db/registerFunction');
 const dbFile = path.join(__dirname, '../db/database.db');
+const userLoggedIn = require('../functions/userSession');
 
 // get register page
 router.get('/', (req, res) => {
 	const header = 'Register';
+	const username = userLoggedIn(req.session);
 	if (req.session.loggedIn) {
-		const username = req.session.username;
 		const userPrivilege = readUser(dbFile, username).userPrivilege;
 		res.render('register', { title: 'Register', header, username, userPrivilege});
 	} else {
-		const username = 'none';
 		res.render('register', { title: 'Register', header, username});
 	}
 });

@@ -4,40 +4,18 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatile" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/navbar.css">
-  <link rel="stylesheet" href="css/grid.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/navbar.css">
+  <link rel="stylesheet" type="text/css" href="css/grid.css">
   <title><%= title %></title>
 </head>
 <body>
 <%- include('includes/navbar') %>
-<div id="content">
-  <div id="grid-container">
-    <h2><%= header %></h2>
-    <div id="grid">
-    <% if (events.length >= 4) { %>
-      <% for (let i = events.length - 1; i >= events.length - 4; i -= 1) { %>
-          <div class="grid-item">
-            <a href="/event?idEvent=<%= events[i].id %>">
-              <div class="container">
-                <div class="image">
-                  <img src="images/uploads/<%- events[i].image %>">
-                </div>
-                <div class="title">
-                  <h3>
-                    <%= events[i].name %>
-                  </h3>
-                </div>
-              </div>
-            </a>
-          </div>
-        <% } %>
-      <% } else { %>
-          <p>Not enough events available.
-          <a href="/events" class="link">Go to events page</a></p>
-      <% } %> 
-      </div>
-    </div>
-  </div>
+<% if (events.length > 0) { %>
+    <%- include('includes/eventGrid') %>
+<% } else { %>
+  <p>Not enough events available.
+  <a href="/events" class="link">Go to events page</a></p>
+<% } %> 
 </body>
 </html>

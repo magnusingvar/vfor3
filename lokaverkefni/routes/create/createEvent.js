@@ -4,6 +4,7 @@ const createEvent = require('../../db/create/createEvent');
 const router = express.Router();
 const readUser = require('../../db/read/readUser');
 const dbFile = path.join(__dirname, '../../db/database.db');
+const userLoggedIn = require('../../functions/userSession');
 
 const d = new Date(); 
 const y = d.getFullYear();
@@ -13,12 +14,11 @@ const m = ['January', 'February', 'March',
 'September', 'October', 'November', 'December'];
 
 router.get('/', (req, res) => {
+  const username = userLoggedIn(req.session);
   if (req.session.loggedIn) {
-    const username = req.session.username;
     const userPrivilege = readUser(dbFile, username).userPrivilege;
-    res.render('create/event', { title: 'Create event', m, y, username} );
+    res.render('create/event', { title: 'Create event', m, y, userPrivilege, username} );
   } else {
-    const username = 'none';
     const userPrivilege = readUser(dbFile, username);
     res.render('error', { title: 'Error', status: 403, msg: `You don't have permission to perform this action.`, username });
   }

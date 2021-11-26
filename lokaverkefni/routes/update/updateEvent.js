@@ -6,6 +6,7 @@ const dbFile = path.join(__dirname, '../../db/database.db');
 const readUser = require('../../db/read/readUser')
 const updateEvent = require('../../db/update/updateEvent');
 const multer = require('multer');
+const userLoggedIn = require('../../functions/userSession');
 
 const d = new Date(); 
 const y = d.getFullYear();
@@ -14,26 +15,18 @@ const m = ['January', 'February', 'March',
 'April', 'May', 'June', 'July', 'August',
 'September', 'October', 'November', 'December'];
 
-
 router.get('/', (req, res) => {
-  try {
-    if (req.session.loggedIn) {
-      const event = readEvent(dbFile, req.query.idEvent);
-      // Get event date from database for select on page
-      const eventDay = event.date.split(" ")[0];
-      const eventMonth = event.date.split(" ")[1];
-      const eventYear = event.date.split(" ")[2];
-
-      const username = req.session.username;
-      const userPrivilege = readUser(dbFile, username).userPrivilege;
-      res.render('includes/eventEditor', {title: 'Editor', eventDay, eventMonth, eventYear, m, y, username, userPrivilege, event})
-    } else {
-      const username = 'none';
-      res.render('error', { title: 'Error', status: 403, msg: 'Access denied.', username });
-    }
-  } catch (e) {
-    const username = 'none';
-    res.render('error', { title: 'Error', status: 404, msg: 'Page not found!', username});
+  const username = userLoggedIn(req.session);
+  if (req.session.loggedIn) {
+    const event = readEvent(dbFile, req.query.idEvent);
+    // Get event date from database for select on page
+    const eventDay = event.date.split(" ")[0];
+    const eventMonth = event.date.split(" ")[1];
+    const eventYear = event.date.split(" ")[2];
+    const userPrivilege = readUser(dbFile, username).userPrivilege;
+    res.render('includes/eventEditor', {title: 'Editor', eventDay, eventMonth, eventYear, m, y, username, userPrivilege, event})
+  } else {
+    res.render('error', { title: 'Error', status: 403, msg: 'Access denied.', username });
   }
 });
 
@@ -49,6 +42,7 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage})
 
 router.post('/', upload.single('file'), (req, res) => {
+  const username = userLoggedIn(req.session);
   if (req.session.loggedIn) {
     const date = req.body.day;
     const month = req.body.month;
@@ -58,7 +52,6 @@ router.post('/', upload.single('file'), (req, res) => {
     updateEvent(dbFile, req.body.idEvent, req.body.name, req.body.description, evDate, image); 
     res.redirect('/')
   } else {
-    const username = 'none';
     res.render('error', { title: 'Error', status: 403, msg: 'Access denied.', username });
   }
 });

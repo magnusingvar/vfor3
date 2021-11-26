@@ -18,8 +18,9 @@ const contactPage = require('./routes/contact');
 
 const app = express();
 
+// session
 app.use(session({
-  secret: '98290idkjl987687989auyghdjuiok9876098765&%R$&',
+  secret: 'secret',
   resave: true,
   saveUninitialized: true
 }));
@@ -51,7 +52,7 @@ app.use('/myevents', myEvents);
 // errors : page not found
 app.use((req, res) => {
   res.status(404);
-  res.render('error', { title: 'Error', status: 404, msg: 'Page not found!' });
+  res.render('error', { title: 'Error', status: 404, msg: 'Page not found!', username: req.session.username});
 });
 
 // handling errors

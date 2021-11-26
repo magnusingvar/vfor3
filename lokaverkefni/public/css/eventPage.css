@@ -20,6 +20,7 @@ h1 {
   padding: 8px;
   border: 0px;
   border-radius: 5px;
+  margin: 10px 0;
 }
 
 #signup-btn {
@@ -41,23 +42,64 @@ h1 {
 .img-container {
   position: relative;
   display: inline-block;
-  width: 400px;
-  height: 400px;
-  margin: 5px 0 0 0;
+  width: 396px;
+  height: 396px;
+  margin: 9px 0 5px 0;
 }
 
 .img-container .image {
   position: relative;
+  width: 100%;
+  height: 100%;
   border: 2px solid #000;
-  border-radius: 7px;
+  border-radius: 10px;
 }
 
-/* .img-container img {
-  position: relative;
-  width: 400px;
-  height: 400px;
-  margin: 10px 0 0 0;
-} */
+@media screen and (max-width: 600px) {
+  #event-name, #event-description, #event-date {
+    font-size: auto;
+  }
+
+  .img-container {
+    width: 350px;
+    height: 350px;
+  }
+}
+
+
+@media screen and (max-width: 400px) {
+  #event-name, #event-description, #event-date {
+    font-size: auto;
+  }
+
+  .img-container {
+    width: 285px;
+    height: 285px;
+  }
+}
+
+
+@media screen and (max-width: 300px) {
+  #event-name, #event-description, #event-date {
+    font-size: auto;
+  }
+
+  .img-container {
+    width: 225px;
+    height: 225px;
+  }
+}
+
+@media screen and (max-width: 200px) {
+  #event-name, #event-description, #event-date {
+    font-size: auto;
+  }
+  
+  .img-container {
+    width: 150px;
+    height: 150px;
+  }
+}
 
 form#edit {
   position: relative;
@@ -75,72 +117,4 @@ form#upload {
   justify-content: center;
   flex-direction: column;
   align-items: center; 
-}
-
-.newName {
-  display: block;
-  margin: 0;
-  text-align: center;
-  font-size: 2em;
-  height: 34px;
-  margin: 2px 0 2px 0;
-}
-
-.newDescription {
-  display: block;
-  margin: 0;
-  text-align: center;
-  height: 24px;
-  margin: 2px 0 2px 0;
-  padding: 5px 0 5px 0;
-}
-
-.imageUpload {
-  position: relative;
-  border: 1px solid black;
-  width: 399px;
-  height: 399px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.imageUpload img {
-  width: 100%;
-  height: 100%;
-}
-
-.overlay, img{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: darkgray;
-  opacity: 0.6;
-}
-
-.image {
-  opacity: 1;
-}
-
-input.file, .uploadBtn {
-  margin: 0 auto;
-  position: relative;
-}
-
-/* .imageUpload input.uploadBtn {
-  position: absolute;
-} */
-
-input.updateBtn {
-  display: block;
-}
-
-.deleteBtn {
-  cursor: pointer;
-  margin: 15px;
-  padding: 10px;
-  border: 1px solid #000;
-  background: #F32013;
-  color: #fff;
 }

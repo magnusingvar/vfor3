@@ -4,23 +4,24 @@
   justify-content: center;
 }
 
+#grid-container > h2 {
+  margin: 12px 0;
+}
+
 #grid {
   display: grid;
   grid-template-columns: repeat(3, auto);
-  gap: 0px;
+  gap: 10px;
   width: 100%;
-  max-width: 780px;
-  margin: 0 auto;
 }
 
 .grid-item {
-  width: 220px;
-  height: 260px;
-  padding: 20px;
+  margin: 7px;
+  width: 100%;
+  height: 100%;
 }
 
 .grid-item:hover {
-  
   opacity: 0.9;
 }
 
@@ -36,15 +37,14 @@
 }
 
 @media screen and (max-width: 900px) {
-  
+
   div#grid {
     display: grid;
     grid-template-columns: repeat(3, auto);
     gap: 0px;
     width: 100%;
-    margin: 0 auto;
   }
-  
+
   div.grid-item {
     width: auto;
     height: auto;
@@ -63,21 +63,17 @@
 }
 
 @media screen and (max-width: 600px) {
-  div.test {
-    display: block;
-  }
+
   div#grid {
     display: grid;
     grid-template-columns: repeat(2, auto);
-    gap: 0px;
+    gap: 10px;
     width: 100%;
-    margin: 0 auto;
   }
-  
+
   div.grid-item {
     width: auto;
     height: auto;
-    padding: 20px;
   }
   
   .image {
@@ -101,7 +97,7 @@
     width: 100%;;
     margin: 0 auto
   }
-  
+
   div.grid-item {
     width: auto;
     height: auto;

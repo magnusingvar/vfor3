@@ -4,9 +4,10 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatile" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/navbar.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/eventPage.css">
+  <link rel="stylesheet" type="text/css" href="css/navbar.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/eventPage.css">
+  <link rel="stylesheet" type="text/css" href="css/eventEditor.css">
 </head>
 <body>
 <%- include ('navbar') -%>
@@ -14,8 +15,8 @@
   <form action="/updateEvent" id="update" method="POST" enctype="multipart/form-data">
     <input type="hidden" name="idEvent" value="<%= event.id %>" placeholder=" ">
 
-    <input type="text" name="name" class="name" value="<%= event.name %>">
-    <input type="text" name="description" id="description" class="description" value="<%= event.description %>">
+    <input type="text" name="name" class="name" value="<%= event.name %>" placeholder="Event name">
+    <input type="text" name="description" id="description" class="description" value="<%= event.description %>" placeholder="Event description">
     <div id="date">
       <select name="day" id="day">
         <% for (let i = 1; i < 32; i += 1){ %>
@@ -43,17 +44,17 @@
           <% } %>
         </select>
     </div>
-    <input type="submit" class="updateBtn" value="Update">
+    <input type="submit" id="update-btn" class="btn" value="Update">
     <div class="imageUpload">
       <div class="overlay"></div>
-        <img src="/images/<%- event.image %>">
+        <img src="/images/uploads/<%- event.image %>">
         <input type="file" class="file" name="file">
       </div>
     </form>
       
     <form action="/delete" id="delete" method="POST">
       <input type="hidden" name="idEvent" value="<%= event.id %>" placeholder=" ">
-      <input type="submit" class="deleteBtn" value="Delete">
+      <input type="submit" class="deleteBtn btn" value="Delete">
     </form>
   </div>
 </body>

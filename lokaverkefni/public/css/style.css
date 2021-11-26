@@ -1,9 +1,20 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
   text-decoration: none;
   color: #000;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
 }
 
 .link {
@@ -12,7 +23,28 @@
 }
 
 #content {
-  margin: 40px 0 0 0;
+  margin: 15px 0;
+  align-content: center;
+  width: 100%;
+  height: auto;
+}
+
+#error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#error > h1 {
+  font-size: 65px;
+  color: #FF0000;
+  margin: 8px 0;
+}
+
+#error > h2 {
+  font-size: 30px;
+  margin: 8px 0;
 }
 
 .btn:hover {
