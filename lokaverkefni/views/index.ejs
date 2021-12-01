@@ -8,13 +8,24 @@
   <link rel="stylesheet" type="text/css" href="css/navbar.css">
   <link rel="stylesheet" type="text/css" href="css/grid.css">
   <title><%= title %></title>
+  <% if (events.length < 3) { %> 
+    <style>
+      div#grid {
+        gap: 0px;
+      }
+
+      div.grid-item {
+        margin: 10px;
+      }
+    </style>
+  <% } %>
 </head>
 <body>
 <%- include('includes/navbar') %>
-<% if (events.length > 0) { %>
+<% if (events.length > 0 || events == "undefined") { %>
     <%- include('includes/eventGrid') %>
 <% } else { %>
-  <p>Not enough events available.
+  <p class="msg">Not enough events available.
   <a href="/events" class="link">Go to events page</a></p>
 <% } %> 
 </body>

@@ -23,10 +23,10 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   let transport = nodemailer.createTransport({
     host: "smtp.mailtrap.io",
-    port: 2525,
+    port: 25,
     auth: {
-      user: "ed0b93b031f80c",
-      pass: "7dd9c187311065"
+      user: process.env.EMAIL_USERNAME,
+      pass: process.env.EMAIL_PASSWORD
     }
   });
 
@@ -36,8 +36,8 @@ router.post('/', (req, res) => {
       address: req.body.email
     },
     to: 'vfor3jq05@gmail.com',
-    subject: req.body.subject,
-    text: req.body.message
+      subject: req.body.subject,
+      text: req.body.message
   };
 
   transport.sendMail(mailOptions, function(error, info){

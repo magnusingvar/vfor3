@@ -4,10 +4,10 @@
  <ul class="navbar-mobile"> 
     <li>
       <div class="dropdown">
-        <a class="dropbtn" onclick="myFunction()">
+        <a class="dropbtn" onclick="toggleDropdown()">
           &#8801;
         </a>
-        <div class="dropdown-content" id="myDropdown">
+        <div class="dropdown-content" id="dropdown">
           <a href="/contact">Contact</a>
           <a href="/myEvents">My Events</a>
           <% try { if (userPrivilege == "Admin") { %>

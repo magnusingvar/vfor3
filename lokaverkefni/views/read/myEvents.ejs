@@ -8,13 +8,24 @@
   <link rel="stylesheet" href="css/navbar.css">
   <link rel="stylesheet" href="css/grid.css">
   <title><%= title %></title>
+  <% if (events.length < 3) { %> 
+    <style>
+      div#grid {
+        gap: 0px;
+      }
+
+      div.grid-item {
+        margin: 10px;
+      }
+    </style>
+  <% } %>
 </head>
 <body>
 <%- include('../includes/navbar') %>
 <% if (events.length > 0) { %>
   <%- include('../includes/eventGrid') %>
 <% } else { %>
-  <p>
+  <p class="msg">
     You are currently not signed up for any events.
   </p>
 <% } %>

@@ -9,10 +9,12 @@ UPDATE users SET userPrivilege='Admin' WHERE id=1;
 
 CREATE TABLE events (
   id INTEGER PRIMARY KEY, 
-  name TEXT NOT NULL,
+  name TEXT NOT NULL UNIQUE,
   description TEXT,
-  date TEXT,
-  image TEXT DEFAULT 'imgNotFound.jpg'
+  day INTEGER,
+  month TEXT,
+  year INTEGER,
+  image TEXT
 );
 
 CREATE TABLE userEvents (

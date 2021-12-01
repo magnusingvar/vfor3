@@ -9,8 +9,8 @@ const userLoggedIn = require('../../functions/userSession');
 router.post('/', (req, res) => {
   const username = userLoggedIn(req.session);
   const user = readUser(dbFile, username).id;
-  withdraw(dbFile, user, req.body.idEvent);
-  res.redirect(`/event?idEvent=${req.body.idEvent}`)
+  withdraw(dbFile, user, req.body.id);
+  res.redirect(`/event?id=${req.body.id}`)
 });
 
 module.exports = router;

@@ -20,10 +20,14 @@ router.get('/', (req, res) => {
 
 // post register page
 router.post('/', (req, res) => {
-	const username = req.body.username;
-	const password = req.body.password;
-	registerUser(dbFile, username, password)
-	res.redirect('/');
+	try {
+		const username = req.body.username;
+		const password = req.body.password;
+		registerUser(dbFile, username, password);
+		res.redirect('/');	
+	} catch (e) {
+		res.render('error', { title: 'Error', status: '404', msg: 'User already exists!', username: 'none'});
+	}
 });
 
 module.exports = router;

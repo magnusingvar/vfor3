@@ -4,10 +4,14 @@
     <div id="grid">
       <% for (let i = 0; i < events.length; i += 1) { %>
         <div class="grid-item">
-          <a href="/event?idEvent=<%= events[i].id %>">
+          <a href="/event?id=<%= events[i].id %>">
             <div class="container">
               <div class="image">
-                <img src="images/uploads/<%- events[i].image %>">
+                <% if (events[i].image != null) { %>
+                  <img src="images/uploads/<%- events[i].image %>">
+                <% } else { %>
+                  <span>No image</span>
+                <% } %>
               </div>
               <div class="title">
                 <h3>
@@ -16,7 +20,7 @@
               </div>
             </div>
             <p>
-              <span><%= events[i].date %></span>
+              <span><%= events[i].day %> <%= events[i].month %> <%= events[i].year %></span>
             </p>
           </a>
           </div>

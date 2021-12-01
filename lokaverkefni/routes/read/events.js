@@ -15,10 +15,10 @@ router.get('/', (req, res) => {
   // Check if user is logged in
   if (req.session.loggedIn) {
     const userPrivilege = readUser(dbFile, username).userPrivilege;
-    res.render('events', { title: 'Events', header, events, username, userPrivilege})
+    res.render('read/events', { title: 'Events', header, events, username, userPrivilege})
   } else {
     const userPrivilege = readUser(dbFile, username);
-    res.render('events', { title: 'Events', header, events, username, userPrivilege})
+    res.render('read/events', { title: 'Events', header, events, username, userPrivilege})
   }
 });
 

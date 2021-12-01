@@ -15,7 +15,6 @@ router.get('/', (req, res) => {
     const user = readUser(dbFile, username).id;
     let where = `WHERE idUser = ${user}`;
     const events = getEvents(dbFile, where)
-    console.log(events)
     res.render('./read/myEvents', { title: 'My Events', header, username, events, userPrivilege } )
   } else {
     const userPrivilege = readUser(dbFile, username);

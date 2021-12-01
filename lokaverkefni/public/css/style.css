@@ -17,6 +17,13 @@ html {
   height: 100%;
 }
 
+.msg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 35px 0;
+}
+
 .link {
   font-weight: 600; 
   text-decoration: underline;
@@ -32,8 +39,7 @@ html {
 #error {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
 }
 
 #error > h1 {
@@ -50,4 +56,29 @@ html {
 .btn:hover {
   opacity: 0.85;
   cursor: pointer;
+}
+
+#update-btn {
+  background: #0e84f1;
+  color: #fff;
+  padding: 8px;
+  border: 0px;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+#signup-btn {
+  background: #00B107;
+  color: #fff;
+  padding: 8px;
+  border: 0;
+  border-radius: 5px;
+}
+
+#withdraw-btn {
+  background: #c7180b ;
+  color: #fff;
+  padding: 8px;
+  border: 0px;
+  border-radius: 5px;
 }

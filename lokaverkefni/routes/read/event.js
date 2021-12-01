@@ -11,9 +11,9 @@ const dbFile = path.join(__dirname, '../../db/database.db');
 router.get('/', (req, res) => {
   const username = userLoggedIn(req.session);
   try {
-    const event = readEvent(dbFile, req.query.idEvent);
+    const event = readEvent(dbFile, req.query.id);
     const userEvent = [];
-    let where = `WHERE idEvent = ${req.query.idEvent}`;
+    let where = `WHERE idEvent = ${req.query.id}`;
     if (req.session.loggedIn) {
       const userEvent = readUserEvent(dbFile, where);
       const userPrivilege = readUser(dbFile, username).userPrivilege;

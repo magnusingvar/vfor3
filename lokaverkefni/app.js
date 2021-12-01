@@ -44,7 +44,7 @@ app.use('/contact', contactPage);
 app.use('/register', registerPage); 
 app.use('/create', createEvent);
 app.use('/delete', deleteEvent);
-app.use('/updateEvent', updateEvent);
+app.use('/update', updateEvent);
 app.use('/signup', signup);
 app.use('/cancel', cancel);
 app.use('/myevents', myEvents);
