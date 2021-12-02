@@ -4,7 +4,7 @@ const path = require('path');
 const readEvent = require('../../db/read/readEvent')
 const deleteEvent = require('../../db/delete/deleteEvent');
 const router = express.Router();
-const userLoggedIn = require('../../functions/userSession');
+const userLoggedIn = require('../functions/userSession');
 const dbFile = path.join(__dirname, '../../db/database.db');
 
 /* Allow to delete event if logged in and "administrator",
@@ -15,7 +15,7 @@ router.post('/', (req, res) => {
     const event = readEvent(dbFile, req.body.id).image;
     console.log(event)
       const imgPath = 'public/images/uploads/' + `${event}`;
-      if (imgPath == 'public/images/uploads/blank.png') {
+      if (imgPath == '') {
         deleteEvent(dbFile, req.body.id);
       } else {
         fs.unlink(imgPath, function (err) {

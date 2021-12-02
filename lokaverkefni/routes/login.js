@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const loginUser = require('../db/loginFunction');
+const readUser = require('../db/read/readUser');
+const userLoggedIn = require('./functions/userSession');
 const bcrypt = require('bcrypt');
 const dbFile = path.join(__dirname, '../db/database.db');
-const readUser = require('../db/read/readUser');
-const userLoggedIn = require('../functions/userSession');
 
 // Get login page
 router.get('/', (req, res) => {

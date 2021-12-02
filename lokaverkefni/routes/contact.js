@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const nodemailer = require('nodemailer');
-require('dotenv').config();
 const path = require('path');
-const dbFile = path.join(__dirname, '../db/database.db');
+const nodemailer = require('nodemailer');
 const readUser = require('../db/read/readUser');
-const userLoggedIn = require('../functions/userSession');
+const userLoggedIn = require('./functions/userSession');
+const dbFile = path.join(__dirname, '../db/database.db');
+require('dotenv').config();
 
 router.get('/', (req, res) => {
   const username = userLoggedIn(req.session);

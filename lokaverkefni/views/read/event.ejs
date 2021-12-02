@@ -34,7 +34,7 @@
       <% if (userPrivilege == "Admin") { %>
         <div class="edit-container">
           <form action="/update" method="GET">
-            <button type="submit" class="btn" id="update-btn">Update</button>
+            <input type="submit" class="btn" id="update-btn" value="Update">
             <input type="hidden" name="id" id="id" value="<%= event.id %>"></form>
           </form>
         </div>
@@ -43,14 +43,14 @@
       <% if (userEvent.length <= 0) { %>
         <div class="signup-container">
           <form action="/signup" method="POST">
-            <button type="submit" class="btn" id="signup-btn">Signup for event</button>
+            <input type="submit" class="btn" id="signup-btn" value="Signup for event">
             <input type="hidden" name="id" id="id" value="<%= event.id %>"></form>
           </form>
         </div>
       <% } else { %>
       <div class="withdraw-container">
         <form action="/cancel" method="POST">
-          <button type="submit" class="btn" id="withdraw-btn">Withdraw from event </button>
+          <input type="submit" class="btn" id="withdraw-btn" value="Withdraw from event">
           <input type="hidden" name="id" id="id" value="<%= event.id %>"></form>
         </form>
       </div>

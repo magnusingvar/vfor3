@@ -3,8 +3,8 @@ const router = express.Router();
 const path = require('path');
 const readUser = require('../db/read/readUser');
 const registerUser = require('../db/registerFunction');
+const userLoggedIn = require('./functions/userSession');
 const dbFile = path.join(__dirname, '../db/database.db');
-const userLoggedIn = require('../functions/userSession');
 
 // get register page
 router.get('/', (req, res) => {

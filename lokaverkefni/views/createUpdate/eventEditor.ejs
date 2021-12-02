@@ -15,10 +15,6 @@
       <form action="/create" id="create" method="POST" enctype="multipart/form-data">
         <input type="text" name="name" class="name" placeholder="Event name">
         <input type="text" name="description" id="description" class="description" placeholder="Event description">
-        <!-- <div class="image-option">
-          <input type="checkbox" id="leaveblank" name="leaveblank">
-          <label for="leaveblank">Leave image leave-blank</label>
-        </div> -->
 
         <div id="date">
           <select name="day" id="day">
@@ -43,16 +39,15 @@
             <% } %>
           </select>
         </div>
-
-        <input type="submit" id="update-btn" class="btn" value="Create">
         
-        <div class="container">
+        <div class="container" style="margin: 32px 0 0 0;">
           <div class="imageUpload">
             <div id="file">
               <input type="file" name="file" />
             </div>
           </div>
         </div>
+        <input type="submit" id="update-btn" class="btn" value="Create">
       </form>
     </div>
   <% } else { %>
@@ -99,6 +94,7 @@
       <div class="container">
         <div class="imageUpload">
           <% if (event.image != null) { %>
+            <div id="overlay"></div>
             <img src="images/uploads/<%- event.image %>">
           <% } %>
           <div id="file">
@@ -113,7 +109,7 @@
           
     <form action="/delete" id="delete" method="POST">
       <input type="hidden" name="id" value="<%= event.id %>" placeholder=" ">
-      <input type="submit" class="deleteBtn btn" value="Delete">
+      <input type="submit" id="deleteBtn" class="btn" value="Delete">
     </form>
   <% } %>
   </div>

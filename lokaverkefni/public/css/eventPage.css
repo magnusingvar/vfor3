@@ -8,6 +8,10 @@ h1 {
   margin: 0
 }
 
+form {
+  color: #fff;
+}
+
 #event-name, #event-description, #event-date,
 .edit-container, .signup-container,
 .withdraw-container{

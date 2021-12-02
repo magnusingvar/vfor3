@@ -5,7 +5,7 @@ const signup = require('../../db/create/eventSignup');
 const readEvent = require('../../db/read/readEvent');
 const readUserEvent = require('../../db/read/readUserEvent');
 const readUser = require('../../db/read/readUser');
-const userLoggedIn = require('../../functions/userSession');
+const userLoggedIn = require('../functions/userSession');
 const dbFile = path.join(__dirname, '../../db/database.db');
 
 router.get('/', (req, res) => {

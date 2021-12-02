@@ -5,7 +5,7 @@ const path = require('path');
 const readEvent = require('../../db/read/readEvent');
 const readUser = require('../../db/read/readUser')
 const updateEvent = require('../../db/update/updateEvent');
-const userLoggedIn = require('../../functions/userSession');
+const userLoggedIn = require('../functions/userSession');
 const multer = require('multer');
 const dbFile = path.join(__dirname, '../../db/database.db');
 
@@ -43,7 +43,8 @@ const storage = multer.diskStorage({
   },
 
   filename: function(req, file, cb) {
-    cb(null, req.body.name + req.body.day + req.body.month + req.body.year + '.jpg');
+    const filename = req.body.name + req.body.day + req.body.month + req.body.year + Date.now() + '.jpg';
+    cb(null, filename);
   }
  });
 
@@ -63,7 +64,7 @@ router.post('/', upload.single('file'), (req, res) => {
       const event = readEvent(dbFile, req.body.id);
       const file = req.file;
       if (file) {
-        const image = req.body.name + req.body.day + req.body.month + req.body.year + '.jpg';
+        const image = req.file.filename;
         updateEvent(dbFile, req.body.id, req.body.name, req.body.description, req.body.day, req.body.month, req.body.year, image);
         res.redirect('/');
       } else {
@@ -78,7 +79,6 @@ router.post('/', upload.single('file'), (req, res) => {
           const image = null;
           updateEvent(dbFile, req.body.id, req.body.name, req.body.description, req.body.day, req.body.month, req.body.year, image);
         });
-        res.redirect('/');
       }
     } else {
       res.render('error', { title: 'Error', status: 403, msg: 'Access denied.', username });

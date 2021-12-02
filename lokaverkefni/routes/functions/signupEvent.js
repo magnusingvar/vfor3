@@ -4,7 +4,7 @@ const signup = require('../../db/create/eventSignup');
 const router = express.Router();
 const readUser = require('../../db/read/readUser');
 const dbFile = path.join(__dirname, '../../db/database.db');
-const userLoggedIn = require('../../functions/userSession');
+const userLoggedIn = require('./userSession');
 
 router.post('/', (req, res) => {
   const username = userLoggedIn(req.session);

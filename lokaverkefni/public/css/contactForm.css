@@ -16,6 +16,7 @@ h2 {
 
 #container form input, 
 #message, .btn {
+  color: #000;
   padding: 5px;
   margin: 1px 0 10px 0;
 }

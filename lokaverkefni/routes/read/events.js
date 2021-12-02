@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const path = require('path');
-const dbFile = path.join(__dirname, '../../db/database.db');
 const getEvents = require('../../db/read/readEvents');
 const readUser = require('../../db/read/readUser');
-const userLoggedIn = require('../../functions/userSession');
+const userLoggedIn = require('../functions/userSession');
+const dbFile = path.join(__dirname, '../../db/database.db');
 
 router.get('/', (req, res) => {
   const username = userLoggedIn(req.session);

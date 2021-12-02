@@ -53,6 +53,13 @@ html {
   margin: 8px 0;
 }
 
+.btn {
+  color: inherit;
+  padding: 8px;
+  border: 1px solid #000;
+  border-radius: 5px;
+}
+
 .btn:hover {
   opacity: 0.85;
   cursor: pointer;
@@ -60,25 +67,19 @@ html {
 
 #update-btn {
   background: #0e84f1;
-  color: #fff;
-  padding: 8px;
-  border: 0px;
-  border-radius: 5px;
   margin: 10px 0;
+}
+
+#deleteBtn {
+  margin: 7px;
+  padding: 10px;
+  background: #F32013;
 }
 
 #signup-btn {
   background: #00B107;
-  color: #fff;
-  padding: 8px;
-  border: 0;
-  border-radius: 5px;
 }
 
 #withdraw-btn {
   background: #c7180b ;
-  color: #fff;
-  padding: 8px;
-  border: 0px;
-  border-radius: 5px;
 }

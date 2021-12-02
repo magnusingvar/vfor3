@@ -3,7 +3,7 @@ const path = require('path');
 const router = express.Router();
 const readUser = require('../../db/read/readUser');
 const createEvent = require('../../db/create/createEvent');
-const userLoggedIn = require('../../functions/userSession');
+const userLoggedIn = require('../functions/userSession');
 const multer = require('multer');
 const dbFile = path.join(__dirname, '../../db/database.db');
 
@@ -32,7 +32,8 @@ const storage = multer.diskStorage({
   },
 
   filename: function(req, file, cb) {
-    cb(null, req.body.name + req.body.day + req.body.month + req.body.year + '.jpg');
+    const filename = req.body.name + req.body.day + req.body.month + req.body.year + Date.now() + '.jpg';
+    cb(null, filename);
   }
  });
 
@@ -46,7 +47,9 @@ router.post('/', upload.single('file'), (req, res) => {
   try {
     if (req.session.loggedIn) {
       if (file) {
-        const image = `${req.body.name}${req.body.day}${req.body.month}${req.body.year}` + '.jpg';
+        const image = req.file.filename;
+        console.log(image)
+        // const image = `${req.body.name}${req.body.day}${req.body.month}${req.body.year}` + '.jpg';
         createEvent(dbFile, req.body.name, req.body.description, image, req.body.day, req.body.month, req.body.year);
         res.redirect('/');
       } else {
