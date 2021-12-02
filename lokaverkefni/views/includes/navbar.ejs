@@ -1,4 +1,5 @@
 <div id="navbar">
+  <!-- Desktop nav -->
   <ul class="navbar-desktop">
     <li><a href="/">Home</a></li>
     <li><a href="/events">Events</a></li>
@@ -14,7 +15,36 @@
       <% } else { %>
         <a href="/logout">Logout</a>
       <% } %>
-      </li>
+    </li>
   </ul>
-  <%- include('mobile/mobile-nav') %>
+
+  <!-- Mobile nav -->
+  <ul class="navbar-mobile"> 
+    <li>
+      <div class="dropdown">
+        <a class="dropbtn" onclick="toggleDropdown()">
+          &#8801;
+        </a>
+      <div class="dropdown-content" id="dropdown">
+        <a href="/contact">Contact</a>
+        <a href="/myEvents">My Events</a>
+        <% try { if (userPrivilege == "Admin") { %>
+          <a href="/create">Create Event</a>
+        <% }} catch (e) {} %>
+      </div>
+      <script src="js/script.js"></script>
+    </div>
+  </li>
+
+  <li><a href="/">Home</a></li>
+  <li><a href="/events">Events</a></li>
+
+  <li style="float: right;">
+    <% if (username == 'none') { %>
+      <a href="/login">Login</a>
+    <% } else { %>
+      <a href="/logout">Logout</a>
+    <% } %>
+  </li>
+  </ul>
 </div>

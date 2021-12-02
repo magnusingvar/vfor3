@@ -13,10 +13,10 @@ router.get('/', (req, res) => {
   const header = 'New events';
   if (req.session.loggedIn) {
     const userPrivilege = readUser(dbFile, username).userPrivilege;
-    res.render('index', { title: 'Forsíða', header, events, username, userPrivilege});
+    res.render('index', { title: 'Homepage', header, events, username, userPrivilege});
   } else {
     const userPrivilege = readUser(dbFile, username);
-    res.render('index', { title: 'Forsíða', header, events, username, userPrivilege});
+    res.render('index', { title: 'Homepage', header, events, username, userPrivilege});
   }
 });
 

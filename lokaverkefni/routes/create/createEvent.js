@@ -19,9 +19,8 @@ router.get('/', (req, res) => {
   const username = userLoggedIn(req.session);
   if (req.session.loggedIn) {
     const userPrivilege = readUser(dbFile, username).userPrivilege;
-    res.render('createUpdate/eventEditor', { title: 'Create event', operation: 'create', m, y, userPrivilege, username} );
+    res.render('eventMakerEditor/eventMakerEditor', { title: 'Create event', operation: 'create', m, y, userPrivilege, username} );
   } else {
-    const userPrivilege = readUser(dbFile, username);
     res.render('error', { title: 'Error', status: 403, msg: 'Access denied.', username });
   }
 });

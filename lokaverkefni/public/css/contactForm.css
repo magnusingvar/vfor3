@@ -1,18 +1,24 @@
 #container {
+  max-width: 460px;
+  min-width: 100px;
   margin: 0 auto;
+  padding: 5px;
 }
 
 #container, form{
-  width: 360px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
+#container form {
+  width: auto;
+}
+
 h2 {
   margin: 0 0 10px 0;
 }
-
 
 #container form input, 
 #message, .btn {

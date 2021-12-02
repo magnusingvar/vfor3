@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <link rel="stylesheet" type="text/css" href="css/navbar.css">
-  <link rel="stylesheet" type="text/css" href="css/grid.css">
+  <link rel="stylesheet" type="text/css" href="css/eventGrid.css">
   <title><%= title %></title>
   <% if (events.length < 3) { %> 
     <style>
@@ -19,18 +19,13 @@
       }
     </style>
   <% } %>
-
-  <style>
-    #grid {
-      grid-template-columns: repeat(2, auto);
-
-    }
-  </style>
 </head>
 <body>
 <%- include('includes/navbar') %>
-<% if (events.length > 0 || events == "undefined") { %>
+<div id="newevents">
+  <% if (events.length > 0 || events == "undefined") { %>
     <%- include('includes/eventGrid') %>
+</div>
 <% } else { %>
   <p class="msg">Not enough events available.
   <a href="/events" class="link">Go to events page</a></p>

@@ -28,7 +28,7 @@ router.get('/', (req, res) => {
       const eventMonth = event.month;
       const eventYear = event.year;
       const userPrivilege = readUser(dbFile, username).userPrivilege;
-      res.render('createUpdate/eventEditor', {title: 'Editor', operation: 'update', eventDay, eventMonth, eventYear, m, y, username, userPrivilege, event})
+      res.render('eventMakerEditor/eventMakerEditor', {title: 'Update - ' + event.name, operation: 'update', eventDay, eventMonth, eventYear, m, y, username, userPrivilege, event})
     } else {
       res.render('error', { title: 'Error', status: 403, msg: 'Access denied.', username });
     }

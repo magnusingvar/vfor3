@@ -15,11 +15,11 @@ router.get('/', (req, res) => {
     const user = readUser(dbFile, username).id;
     let where = `WHERE idUser = ${user}`;
     const events = getEvents(dbFile, where);
-    res.render('./read/myEvents', { title: 'My Events', header, username, events, userPrivilege } );
+    res.render('./read/myEvents', { title: 'My Events', header, username, events, userPrivilege, msg: 'You are currently not signed up for any events.' } );
   } else {
     const userPrivilege = readUser(dbFile, username);
     const events = [];
-    res.render('./read/myEvents', { title: 'My Events', header, username, userPrivilege, events});
+    res.render('./read/myEvents', { title: 'My Events', header, username, events, userPrivilege, msg: 'To see events you have signed up for, please log in.'});
   } 
 });
 

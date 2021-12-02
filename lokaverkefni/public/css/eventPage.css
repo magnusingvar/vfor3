@@ -1,6 +1,7 @@
 #content {
   margin: 10px 0 0 0;
-  text-align: center; 
+  text-align: center;
+  padding: 5px; 
 }
 
 h1 {
@@ -21,12 +22,11 @@ form {
 .container {
   position: relative;
   display: inline-block;
-  background: darkgray;
   width: 396px;
   height: 396px;
   margin: 9px 0 5px 0;
   border: 1px solid #000;
-  border-radius: 9px;
+  border-radius: 8px;
 }
 
 .container .image {
@@ -36,52 +36,51 @@ form {
   position: relative;
   width: 100%;
   height: 100%;
-  border-radius: 9px;
+  border-radius: 7px;
 }
 
-@media screen and (max-width: 600px) {
-  #event-name, #event-description, #event-date {
-    font-size: auto;
-  }
-
-  .container {
-    width: 350px;
-    height: 350px;
-  }
+#overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: darkgrey;
+  border-radius: inherit;
+  z-index: -1;
 }
 
-
-@media screen and (max-width: 400px) {
-  #event-name, #event-description, #event-date {
-    font-size: auto;
-  }
+@media screen and (max-width: 900px) {
 
   .container {
-    width: 285px;
-    height: 285px;
-  }
-}
-
-
-@media screen and (max-width: 300px) {
-  #event-name, #event-description, #event-date {
-    font-size: auto;
+    max-width: 400px;
+    max-height: 400px;
+    min-width: 150px;
+    min-height: 150px;
+    width: 100%;
+    height: 100%;
   }
 
-  .container {
-    width: 225px;
-    height: 225px;
+  form #withdraw-btn {
+    width: auto;
+    height: auto;
+    white-space: pre-wrap;
   }
 }
 
 @media screen and (max-width: 200px) {
-  #event-name, #event-description, #event-date {
-    font-size: auto;
+  #event-name {
+    font-size: inherit;
   }
   
   .container {
     width: 150px;
     height: 150px;
+  }
+
+
+  form #withdraw-btn {
+    width: auto;
+    height: auto;
+    white-space: pre-wrap;
   }
 }
 
@@ -89,23 +88,9 @@ form#edit {
   position: relative;
 }
 
-form#update {
+form#update, form#create, form#upload {
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-}
-
-form#create {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-}
-
-form#upload {
-   display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center; 
 }

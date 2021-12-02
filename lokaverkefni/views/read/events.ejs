@@ -6,19 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <link rel="stylesheet" type="text/css" href="css/navbar.css">
-  <link rel="stylesheet" type="text/css" href="css/grid.css">
+  <link rel="stylesheet" type="text/css" href="css/eventGrid.css">
   <title><%= title %></title>
-  <% if (events.length < 3) { %> 
-    <style>
-      div#grid {
-        gap: 0px;
-      }
-
-      div.grid-item {
-        margin: 10px;
-      }
-    </style>
-  <% } %>
 </head>
 <body>
   <%- include('../includes/navbar') %>

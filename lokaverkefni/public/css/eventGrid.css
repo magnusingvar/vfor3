@@ -8,10 +8,16 @@
   margin: 12px 0;
 }
 
+#newevents #grid-container #grid{
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  width: 100%;
+}
+
 #grid {
   display: grid;
-  grid-template-columns: repeat(3, auto);
   gap: 10px;
+  grid-template-columns: repeat(3, auto);
   width: 100%;
 }
 
@@ -29,43 +35,18 @@
   background: darkgray;
   border-radius: 9px;
   border: 1px solid #000;
-  border-radius: 9px 9px 9px 9px;
+  border-radius: 9px;
 }
 
-.image img {
+.image > img {
   width: 100%;
   height: 100%;
-  border-radius: inherit;
+  border-radius: 8px;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 700px) {
 
-  div#grid {
-    display: grid;
-    gap: 10px;
-    width: 100%;
-  }
-
-  div.grid-item {
-    width: auto;
-    height: auto;
-  }
-  
-  div.image {
-    width: 180px;
-    height: 180px;
-    margin: 0px 0px 15px 0px;
-  }
-  
-  div.image img {
-    width: 100%;
-    border-radius: 9px;
-  }
-}
-
-@media screen and (max-width: 600px) {
-
-  div#grid {
+  div#newevents > div#grid, div#grid{
     display: grid;
     grid-template-columns: repeat(2, auto);
     gap: 10px;
@@ -78,25 +59,24 @@
   }
   
   .image {
-    width: 160px;
-    height: 160px;
+    width: 150px;
+    height: 150px;
     margin: 0px 0px 15px 0px;
   }
   
   .image img {
     width: 100%;
-    border-radius: 9px;
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 320px) {
 
+  div#newevents > div#content > div#grid-container > div#grid, 
   div#grid {
     display: grid;
     grid-template-columns: repeat(1, auto);
-    gap: 0px;
-    width: 100%;;
-    margin: 0 auto
+    gap: 10px;
+    width: 100%;
   }
 
   div.grid-item {
@@ -105,13 +85,12 @@
   }
   
   .image {
-    width: 160px;
-    height: 160px;
+    width: 150px;
+    height: 150px;
     margin: 0px 0px 15px 0px;
   }
   
   .image img {
     width: 100%;
-    border-radius: 9px;
   }
 }

@@ -1,0 +1,39 @@
+<form action="/create" id="create" method="POST" enctype="multipart/form-data">
+  <input type="text" name="name" class="name" placeholder="Event name">
+  <input type="text" name="description" id="description" class="description" placeholder="Event description">
+
+  <div id="date">
+    <select name="day" id="day">
+      <% for (let i = 1; i < 32; i += 1){ %>
+        <option value="<%= i %>">
+          <%= i %>
+        </option>
+      <% } %>
+    </select>
+  
+    <select name="month" id="month">
+      <% for (let i = 0; i < m.length; i += 1) { %>
+        <option value="<%= m[i] %>"><%= m[i] %></option>
+      <% } %>
+    </select>
+    
+    <select name="year" id="year">
+      <% for (let i = y; i < 2101; i += 1) { %>
+        <option value="<%= i %>"> 
+          <%= i %>
+        </option>
+      <% } %>
+    </select>
+  </div>
+  
+  <div class="container" style="margin: 32px 0 0 0;">
+    <div class="image">
+      <div id="overlay"></div>
+      <img src="images/blank.jpeg" class="image">
+      <div id="file">
+        <input type="file" name="file" />
+      </div>
+    </div>
+  </div>
+  <input type="submit" id="update-btn" class="btn" value="Create">
+</form>

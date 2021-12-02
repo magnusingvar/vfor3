@@ -1,0 +1,63 @@
+<form action="/update" id="update" method="POST" enctype="multipart/form-data">
+  <input type="hidden" name="id" value="<%= event.id %>" placeholder=" ">
+  <input type="text" name="name" class="name" value="<%= event.name %>" placeholder="Event name">
+
+  <input type="text" name="description" id="description" class="description" value="<%= event.description %>" placeholder="Event description">
+  
+  <div id="date">  
+    <select name="day" id="day">
+      <% for (let i = 1; i < 32; i += 1){ %>
+        <option value="<%= i %>"
+        <% if (eventDay == i) { %> selected<% } %>>
+          <%= i %>
+        </option>
+      <% } %>
+    </select>
+      
+    <select name="month" id="month">
+      <% for (let i = 0; i < 12; i += 1) { %>
+        <option value="<%= m[i] %>"
+          <% if (eventMonth == m[i]) { %> selected <% } %>>
+            <%= m[i] %>
+        </option>
+      <% } %>
+    </select>
+
+    <select name="year" id="year">
+      <% for (let i = y; i < 2101; i += 1) { %>
+        <option value="<%= i %>"
+            <% if (eventYear == i) { %> selected <% } %>> 
+              <%= i %>
+          </option>
+        <% } %>
+      </select>
+    </div>
+    
+    <div class="imageOptions">
+      <input type="checkbox" name="box1" />
+      delete image
+    </div>
+    
+    <div class="container">
+      <div class="image">
+        <% if (event.image != null) { %>
+          <img src="images/uploads/<%- event.image %>" class="image">
+          <div id="overlay"></div>
+        <% } else { %>
+          <img src="images/blank.jpeg" class="image">
+
+        <% } %>
+        <div id="file">
+          <input type="file" name="file" />
+        </div>
+      </div>
+    </div>
+    
+    <input type="submit" id="update-btn" class="btn" value="Update">
+  
+  </form>
+        
+  <form action="/delete" id="delete" method="POST">
+    <input type="hidden" name="id" value="<%= event.id %>" placeholder=" ">
+    <input type="submit" id="deleteBtn" class="btn" value="Delete">
+  </form>
