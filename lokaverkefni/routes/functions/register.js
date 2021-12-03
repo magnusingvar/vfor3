@@ -26,7 +26,7 @@ router.post('/', (req, res) => {
 		registerUser(dbFile, username, password);
 		res.redirect('/');	
 	} catch (e) {
-		res.render('error', { title: 'Error', status: '404', msg: 'User already exists!', username: 'none'});
+		res.render('error', { title: 'Error', status: '403', msg: 'User already exists!', username: 'none'});
 	}
 });
 

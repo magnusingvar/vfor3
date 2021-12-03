@@ -60,7 +60,7 @@ router.post('/', upload.single('file'), (req, res) => {
        res.render('error', { title: 'Error', status: 403, msg: 'Access denied.', username });
      }
   } catch (e) {
-    res.render('error', { title: 'Error', status: 409, msg: 'An event by this name already exists.', username });
+    res.render('error', { title: 'Error', status: 403, msg: 'An event by this name already exists.', username });
   }
 })
 
