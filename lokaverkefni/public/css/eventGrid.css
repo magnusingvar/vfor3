@@ -19,6 +19,7 @@
   gap: 10px;
   grid-template-columns: repeat(3, auto);
   width: 100%;
+  padding: 0 0 20px 0;
 }
 
 .grid-item:hover {
